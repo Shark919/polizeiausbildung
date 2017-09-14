@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EntityService } from '../entity.service';
 import { RouterModule, Routes } from '@angular/router';
-
 @Component({
     selector: 'search',
     templateUrl: './search.component.html',

@@ -4,11 +4,11 @@
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
                     <input type="text" class="form-control" (keyup)="searchFlashcardByTitleLike(currentSearch)" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Suchbegriff eingeben">
-                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                    <button class="input-group-addon btn btn-info" (click)="searchFlashcardByTitleLike(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
                     <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
-                        <span class="fa fa-trash-o"></span>
+                        <span class="fa fa-trash-o"></span> 
                     </button>
                 </div>
             </form>
