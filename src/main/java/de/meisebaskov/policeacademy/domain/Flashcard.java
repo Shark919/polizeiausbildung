@@ -17,6 +17,16 @@ public class Flashcard implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public Flashcard(String title, String description){
+        this.title = title;
+        this.description = description;
+    }
+
+    public Flashcard(){
+        this.title = "DEFAULT";
+        this.description = "DEFAULT";
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")

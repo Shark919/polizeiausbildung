@@ -7,10 +7,14 @@ import { Flashcard } from './flashcard.model';
 import { FlashcardService } from './flashcard.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
+import {EntityService} from "../entity.service";
 
 @Component({
     selector: 'jhi-flashcard',
-    templateUrl: './flashcard.component.html'
+    templateUrl: './flashcard.component.html',
+    providers: [
+        EntityService
+    ]
 })
 export class FlashcardComponent implements OnInit, OnDestroy {
 flashcards: Flashcard[];
@@ -23,7 +27,8 @@ flashcards: Flashcard[];
         private alertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        private principal: Principal,
+        private entityService: EntityService
     ) {
         this.currentSearch = activatedRoute.snapshot.params['search'] ? activatedRoute.snapshot.params['search'] : '';
     }
@@ -53,6 +58,14 @@ flashcards: Flashcard[];
         }
         this.currentSearch = query;
         this.loadAll();
+    }
+
+    searchFlashcardByTitleLike(searchKeyword){
+        this.entityService.searchFlashcardByTitleLike(searchKeyword+"%").subscribe((data) =>{
+            let body = JSON.parse(data._body);
+            this.flashcards = body;
+            console.log(body);
+        }, (error) => this.onError(error));
     }
 
     clear() {

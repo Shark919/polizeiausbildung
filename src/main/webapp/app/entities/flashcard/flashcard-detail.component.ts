@@ -26,13 +26,18 @@ export class FlashcardDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
+        }, (error)=>{}, ()=>{
         });
+
         this.registerChangeInFlashcards();
     }
 
     load(id) {
         this.flashcardService.find(id).subscribe((flashcard) => {
             this.flashcard = flashcard;
+            let description = '<div>'+flashcard.description+'</div>';
+            let htmlObjectDescription = document.getElementById('htmlencodeddescription');
+            htmlObjectDescription.innerHTML = description;
         });
     }
     previousState() {

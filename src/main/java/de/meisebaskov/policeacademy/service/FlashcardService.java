@@ -1,7 +1,11 @@
 package de.meisebaskov.policeacademy.service;
 
 import de.meisebaskov.policeacademy.domain.Flashcard;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service Interface for managing Flashcard.
@@ -31,19 +35,16 @@ public interface FlashcardService {
      */
     Flashcard findOne(Long id);
 
+    Flashcard createFlashcard(String title, String description);
+
+    Optional<Flashcard> getFlashcardByTitle(String title);
+
+    Page<Flashcard> findFlashcardsByTitleIsLike(String title, Pageable pageable);
+
     /**
      *  Delete the "id" flashcard.
      *
      *  @param id the id of the entity
      */
     void delete(Long id);
-
-    /**
-     * Search for the flashcard corresponding to the query.
-     *
-     *  @param query the query of the search
-     *  
-     *  @return the list of entities
-     */
-    List<Flashcard> search(String query);
 }

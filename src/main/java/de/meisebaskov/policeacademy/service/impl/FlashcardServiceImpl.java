@@ -6,10 +6,13 @@ import de.meisebaskov.policeacademy.repository.FlashcardRepository;
 import de.meisebaskov.policeacademy.repository.search.FlashcardSearchRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -21,16 +24,12 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 @Service
 @Transactional
 public class FlashcardServiceImpl implements FlashcardService{
-
     private final Logger log = LoggerFactory.getLogger(FlashcardServiceImpl.class);
 
     private final FlashcardRepository flashcardRepository;
 
-    private final FlashcardSearchRepository flashcardSearchRepository;
-
-    public FlashcardServiceImpl(FlashcardRepository flashcardRepository, FlashcardSearchRepository flashcardSearchRepository) {
+    public FlashcardServiceImpl(FlashcardRepository flashcardRepository) {
         this.flashcardRepository = flashcardRepository;
-        this.flashcardSearchRepository = flashcardSearchRepository;
     }
 
     /**
@@ -42,9 +41,7 @@ public class FlashcardServiceImpl implements FlashcardService{
     @Override
     public Flashcard save(Flashcard flashcard) {
         log.debug("Request to save Flashcard : {}", flashcard);
-        Flashcard result = flashcardRepository.save(flashcard);
-        flashcardSearchRepository.save(result);
-        return result;
+        return flashcardRepository.save(flashcard);
     }
 
     /**
@@ -81,21 +78,25 @@ public class FlashcardServiceImpl implements FlashcardService{
     public void delete(Long id) {
         log.debug("Request to delete Flashcard : {}", id);
         flashcardRepository.delete(id);
-        flashcardSearchRepository.delete(id);
     }
 
-    /**
-     * Search for the flashcard corresponding to the query.
-     *
-     *  @param query the query of the search
-     *  @return the list of entities
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public List<Flashcard> search(String query) {
-        log.debug("Request to search Flashcards for query {}", query);
-        return StreamSupport
-            .stream(flashcardSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .collect(Collectors.toList());
+    public Flashcard createFlashcard(String title, String description) {
+        Flashcard newFlashcard = new Flashcard(title,description);
+        flashcardRepository.save(newFlashcard);
+        log.debug("Created Information for Flashcard: {}", newFlashcard);
+        return newFlashcard;
     }
+
+    public Optional<Flashcard> getFlashcardByTitle(String title) {
+        return flashcardRepository.findOneByTitle(title);
+    }
+
+    public Optional<Flashcard> getFlashcardByDescription(String description) {
+        return flashcardRepository.findOneByDescriptionIsContaining(description);
+    }
+
+    public Page<Flashcard> findFlashcardsByTitleIsLike(String title, Pageable pageable){
+        return flashcardRepository.findFlashcardsByTitleIsLike(title, pageable);
+    }
+
 }

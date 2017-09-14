@@ -3,10 +3,17 @@ package de.meisebaskov.policeacademy.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import de.meisebaskov.policeacademy.domain.Flashcard;
 import de.meisebaskov.policeacademy.service.FlashcardService;
+import de.meisebaskov.policeacademy.service.dto.FlashcardDTO;
 import de.meisebaskov.policeacademy.web.rest.util.HeaderUtil;
+import de.meisebaskov.policeacademy.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +33,6 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 @RestController
 @RequestMapping("/api")
 public class FlashcardResource {
-
     private final Logger log = LoggerFactory.getLogger(FlashcardResource.class);
 
     private static final String ENTITY_NAME = "flashcard";
@@ -119,18 +125,21 @@ public class FlashcardResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     * SEARCH  /_search/flashcards?query=:query : search for the flashcard corresponding
-     * to the query.
-     *
-     * @param query the query of the flashcard search
-     * @return the result of the search
-     */
-    @GetMapping("/_search/flashcards")
+    @GetMapping("/flashcard")
     @Timed
-    public List<Flashcard> searchFlashcards(@RequestParam String query) {
-        log.debug("REST request to search Flashcards for query {}", query);
-        return flashcardService.search(query);
+    public ResponseEntity<FlashcardDTO> getFlashcardByTitle(@RequestParam(value = "flashcardTitle") String title) {
+        log.debug("DEBUG: getFlashcardByTitle called with value: "+title);
+        return ResponseUtil.wrapOrNotFound(
+            flashcardService.getFlashcardByTitle(title)
+                .map(FlashcardDTO::new));
+    }
+
+    @GetMapping("/flashcardLike")
+    @Timed
+    public ResponseEntity<FlashcardDTO> findFlashcardsByTitleIsLike(@RequestParam(value = "flashcardTitle") String title, @ApiParam Pageable pageable) {
+        Page<Flashcard> page = flashcardService.findFlashcardsByTitleIsLike(title, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/management/audits");
+        return new ResponseEntity(page.getContent(), headers, HttpStatus.OK);
     }
 
 }
