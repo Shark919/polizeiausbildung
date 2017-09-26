@@ -10,12 +10,13 @@ import { Flashcard } from './flashcard.model';
 import { FlashcardPopupService } from './flashcard-popup.service';
 import { FlashcardService } from './flashcard.service';
 
+
+
 @Component({
     selector: 'jhi-flashcard-dialog',
     templateUrl: './flashcard-dialog.component.html'
 })
 export class FlashcardDialogComponent implements OnInit {
-
     flashcard: Flashcard;
     isSaving: boolean;
 
@@ -69,6 +70,10 @@ export class FlashcardDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    onHtmlEditorKeyUp(content:any):void{
+        console.log(content);
     }
 }
 

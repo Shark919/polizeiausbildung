@@ -11,7 +11,7 @@ import { FlashcardService } from './flashcard.service';
     templateUrl: './flashcard-detail.component.html'
 })
 export class FlashcardDetailComponent implements OnInit, OnDestroy {
-
+    description: any;
     flashcard: Flashcard;
     private subscription: Subscription;
     private eventSubscriber: Subscription;

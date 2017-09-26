@@ -24,6 +24,8 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_description">Beschreibung</label>
+            <textarea  id="description" class="form-control" name="description" placeholder="Enter the description" required [(ngModel)]='description' #description='ngModel'
+                       (htmlEditorKeyUp)="onHtmlEditorKeyUp($event)" htmlEditor></textarea>
             <input type="text" class="form-control" name="description" id="field_description"
                    [(ngModel)]="flashcard.description" required minlength="2" />
             <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">

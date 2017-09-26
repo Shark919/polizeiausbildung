@@ -9,7 +9,8 @@ import { PolizeiausbildungHomeModule } from './home/home.module';
 import { PolizeiausbildungAdminModule } from './admin/admin.module';
 import { PolizeiausbildungAccountModule } from './account/account.module';
 import { PolizeiausbildungEntityModule } from './entities/entity.module';
-
+import * as tinymce from 'tinymce';
+import {SimpleTinyMceDirective} from './entities/flashcard/tinymce.directive';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 
