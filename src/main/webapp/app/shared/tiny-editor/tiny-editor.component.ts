@@ -16,6 +16,8 @@ import 'tinymce/plugins/link'
 import 'tinymce/plugins/autoresize'
 import 'tinymce/plugins/imagetools'
 import 'tinymce/plugins/table'
+import 'tinymce/plugins/lists'
+import 'tinymce/plugins/advlist'
 import 'tinymce/plugins/wordcount'
 import 'tinymce/skins/lightgray/skin.min.css'
 import 'tinymce/skins/lightgray/content.min.css'
@@ -44,7 +46,9 @@ export class TinyEditorComponent implements AfterViewInit, OnDestroy {
                 'autoresize',
                 'imagetools',
                 'table',
-                'wordcount'
+                'wordcount',
+                'lists',
+                'advlist'
             ],
             skin_url: 'skins/lightgray',
             setup: editor => {

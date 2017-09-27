@@ -8,6 +8,12 @@ import { FlashcardService } from './flashcard.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 import {EntityService} from "../entity.service";
+import {forEach} from "@angular/router/src/utils/collection";
+import {of} from "rxjs/observable/of";
+
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
+}
 
 @Component({
     selector: 'jhi-flashcard',
@@ -16,8 +22,10 @@ import {EntityService} from "../entity.service";
         EntityService
     ]
 })
+
 export class FlashcardComponent implements OnInit, OnDestroy {
 flashcards: Flashcard[];
+flashcardsNoHTML : Flashcard[];
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;
@@ -64,9 +72,19 @@ flashcards: Flashcard[];
         this.entityService.searchFlashcardByTitleLike(searchKeyword+"%").subscribe((data) =>{
             let body = JSON.parse(data._body);
             this.flashcards = body;
+            this.flashcardsNoHTML = body;
+
+            for(var i = 0; i < this.flashcardsNoHTML.length; i++){
+                var descriptionWithHTML = this.flashcardsNoHTML[i].description;
+                var regex = /<[^>]*>/;
+                var descriptionNoHTML = replaceAll(descriptionWithHTML, regex, "");
+                this.flashcardsNoHTML[i].description = descriptionNoHTML;
+            }
             console.log(body);
         }, (error) => this.onError(error));
     }
+
+
 
     clear() {
         this.currentSearch = '';

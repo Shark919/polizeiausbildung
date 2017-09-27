@@ -70,6 +70,11 @@ export class FlashcardDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
+
+    keyupHandler(event){
+        console.log("OMGOMGOMGOMGOMGOGK "+event.toString());
+        this.flashcard.description = event.toString();
+    }
 }
 
 @Component({

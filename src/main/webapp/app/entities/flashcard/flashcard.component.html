@@ -25,7 +25,7 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="flashcards">
+    <div class="table-responsive" *ngIf="flashcardsNoHTML">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -35,7 +35,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let flashcard of flashcards ;trackBy: trackId">
+            <tr *ngFor="let flashcard of flashcardsNoHTML ;trackBy: trackId">
                 <td>{{flashcard.title}}</td>
                 <td>{{flashcard.description}}</td>
                 <td class="text-right">
