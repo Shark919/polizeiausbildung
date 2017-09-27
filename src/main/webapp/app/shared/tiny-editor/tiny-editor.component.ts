@@ -33,6 +33,7 @@ import 'tinymce/skins/lightgray/content.min.css'
 export class TinyEditorComponent implements AfterViewInit, OnDestroy {
 
     @Input() elementId: String;
+    @Input() content: String;
     @Output() onEditorContentChange = new EventEmitter();
 
     editor;
@@ -51,15 +52,23 @@ export class TinyEditorComponent implements AfterViewInit, OnDestroy {
                 'advlist'
             ],
             skin_url: 'skins/lightgray',
+            init_instance_callback: "insert_contents",
             setup: editor => {
                 this.editor = editor;
                 editor.on('keyup change', () => {
                     const content = editor.getContent();
                     this.onEditorContentChange.emit(content);
                 });
+                editor.on('init', () => {
+                    tinymce.activeEditor.setContent(this.content);
+                });
             }
         });
+        function insert_contents(inst){
+            inst.setContent('<strong>Some contents</strong>');
+        }
     }
+
 
     ngOnDestroy() {
         tinymce.remove(this.editor);

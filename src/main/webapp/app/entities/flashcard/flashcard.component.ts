@@ -42,7 +42,8 @@ flashcardsNoHTML : Flashcard[];
     }
 
     loadAll() {
-        if (this.currentSearch) {
+        this.searchFlashcardByTitleLike("");
+       /* if (this.crrentSearch) {
             this.flashcardService.search({
                 query: this.currentSearch,
                 }).subscribe(
@@ -57,7 +58,7 @@ flashcardsNoHTML : Flashcard[];
                 this.currentSearch = '';
             },
             (res: ResponseWrapper) => this.onError(res.json)
-        );
+        );*/
     }
 
     search(query) {
@@ -83,8 +84,6 @@ flashcardsNoHTML : Flashcard[];
             console.log(body);
         }, (error) => this.onError(error));
     }
-
-
 
     clear() {
         this.currentSearch = '';

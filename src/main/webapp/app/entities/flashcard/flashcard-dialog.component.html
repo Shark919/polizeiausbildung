@@ -26,6 +26,7 @@
             <label class="form-control-label">Beschreibung</label>
             <jhi-tiny-editor
                 [elementId]="'field_description'"
+                [content]=flashcard.description
                 (onEditorContentChange)="keyupHandler($event)"
             >
             </jhi-tiny-editor>
