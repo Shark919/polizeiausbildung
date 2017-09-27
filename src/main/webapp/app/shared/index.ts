@@ -17,8 +17,10 @@ export * from './user/user.service';
 export * from './model/response-wrapper.model';
 export * from './model/request-util';
 export * from './model/base-entity';
+export {TinyEditorComponent} from './tiny-editor/tiny-editor.component';
 export * from './social/social.service';
 export * from './social/social.component';
 export * from './shared-libs.module';
 export * from './shared-common.module';
 export * from './shared.module';
+

@@ -14,6 +14,7 @@ import {
     Principal,
     HasAnyAuthorityDirective,
     JhiSocialComponent,
+    TinyEditorComponent,
     SocialService,
     JhiLoginModalComponent
 } from './';
@@ -25,6 +26,7 @@ import {
     ],
     declarations: [
         JhiSocialComponent,
+        TinyEditorComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective
     ],
@@ -44,6 +46,7 @@ import {
     exports: [
         PolizeiausbildungSharedCommonModule,
         JhiSocialComponent,
+        TinyEditorComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective,
         DatePipe

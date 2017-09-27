@@ -19,6 +19,20 @@ module.exports = (options) => {
             children: false
         },
         module: {
+            loaders: [
+                {
+                    test: require.resolve('tinymce/tinymce'),
+                    loaders: [
+                        'imports?this=>window',
+                        'exports?window.tinymce'
+                    ]
+                },
+                {
+                    test: /tinymce\/(themes|plugins)\//,
+                    loaders: [
+                        'imports?this=>window'
+                    ]
+                }],
             rules: [
                 { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports-loader?jQuery=jquery' },
                 {
@@ -90,7 +104,9 @@ module.exports = (options) => {
                 { from: './src/main/webapp/favicon.ico', to: 'favicon.ico' },
                 { from: './src/main/webapp/manifest.webapp', to: 'manifest.webapp' },
                 // { from: './src/main/webapp/sw.js', to: 'sw.js' },
-                { from: './src/main/webapp/robots.txt', to: 'robots.txt' }
+                { from: './node_modules/tinymce/plugins', to: 'plugins' },
+                { from: './node_modules/tinymce/themes', to: 'themes' },
+                { from: './node_modules/tinymce/skins', to: 'skins' }
             ]),
             new webpack.ProvidePlugin({
                 $: "jquery",
