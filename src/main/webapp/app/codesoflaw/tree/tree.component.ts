@@ -3,6 +3,10 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CodesOfLawService } from '../codesoflaw.service';
 import { RouterModule, Routes } from '@angular/router';
 var $ = require('jQuery');
+import { Article } from '../../entities/article/article.model';
+import { ArticleService } from '../../entities/article/article.service';
+import {ResponseWrapper} from "../../shared/model/response-wrapper.model";
+import {JhiAlertService} from "ng-jhipster";
 
 @Component({
     selector: 'tree',
@@ -16,10 +20,13 @@ export class TreeComponent implements OnInit {
     success: boolean;
     error: string;
     lawcontent: string;
+    articles: Article[];
     paragraphs;
 
     constructor(
-        private CodesOfLawService: CodesOfLawService
+        private CodesOfLawService: CodesOfLawService,
+        private alertService: JhiAlertService,
+        private articleService: ArticleService
     ) {
     }
 
@@ -29,13 +36,23 @@ export class TreeComponent implements OnInit {
     }
 
     getContent(codeOfLaw){
-        console.log("GET CONTENT WITH "+codeOfLaw);
         this.lawcontent = "Inhalte zum Gesetzbuch "+codeOfLaw;
         for(let i = 1; i < 6; i++){
             $('#codeoflaw'+i).css({
                 'color': 'white',
             });
         }
+        this.articleService.search({
+            query: codeOfLaw.toString(), //codeoflaw, todo: add searchByShortTitle, this one is just an easy workaround
+        }).subscribe(
+            (res: ResponseWrapper) => this.articles = res.json,
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+        return;
+    }
+
+    private onError(error) {
+        this.alertService.error(error.message, null, null);
     }
 
     getCodeOfLawContentByKeyword(searchKeyword){

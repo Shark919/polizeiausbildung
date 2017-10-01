@@ -1,9 +1,6 @@
 package de.meisebaskov.policeacademy.service;
 
 import de.meisebaskov.policeacademy.domain.Codeoflaw;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import java.util.List;
 
 /**
@@ -45,7 +42,7 @@ public interface CodeoflawService {
      * Search for the codeoflaw corresponding to the query.
      *
      *  @param query the query of the search
-     *
+     *  
      *  @return the list of entities
      */
     List<Codeoflaw> search(String query);

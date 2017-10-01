@@ -15,7 +15,7 @@
         <dt><span>Codeoflaw</span></dt>
         <dd>
             <div *ngIf="article.codeoflaw">
-                <a [routerLink]="['/codeoflaw', article.codeoflaw?.id]">{{article.codeoflaw?.id}}</a>
+                <a [routerLink]="['/codeoflaw', article.codeoflaw?.id]">{{article.codeoflaw?.shortTitle}}</a>
             </div>
         </dd>
     </dl>

@@ -5,7 +5,7 @@
             "relationshipName": "codeoflaw",
             "otherEntityName": "codeoflaw",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityField": "shortTitle"
         }
     ],
     "fields": [

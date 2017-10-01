@@ -4,7 +4,6 @@ import de.meisebaskov.policeacademy.PolizeiausbildungApp;
 
 import de.meisebaskov.policeacademy.domain.Codeoflaw;
 import de.meisebaskov.policeacademy.repository.CodeoflawRepository;
-import de.meisebaskov.policeacademy.service.ArticleService;
 import de.meisebaskov.policeacademy.service.CodeoflawService;
 import de.meisebaskov.policeacademy.repository.search.CodeoflawSearchRepository;
 import de.meisebaskov.policeacademy.web.rest.errors.ExceptionTranslator;
@@ -53,9 +52,6 @@ public class CodeoflawResourceIntTest {
     private CodeoflawService codeoflawService;
 
     @Autowired
-    private ArticleService articleService;
-
-    @Autowired
     private CodeoflawSearchRepository codeoflawSearchRepository;
 
     @Autowired
@@ -77,7 +73,7 @@ public class CodeoflawResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        CodeoflawResource codeoflawResource = new CodeoflawResource(codeoflawService, articleService);
+        CodeoflawResource codeoflawResource = new CodeoflawResource(codeoflawService);
         this.restCodeoflawMockMvc = MockMvcBuilders.standaloneSetup(codeoflawResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -151,6 +147,24 @@ public class CodeoflawResourceIntTest {
         int databaseSizeBeforeTest = codeoflawRepository.findAll().size();
         // set the field null
         codeoflaw.setTitle(null);
+
+        // Create the Codeoflaw, which fails.
+
+        restCodeoflawMockMvc.perform(post("/api/codeoflaws")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(codeoflaw)))
+            .andExpect(status().isBadRequest());
+
+        List<Codeoflaw> codeoflawList = codeoflawRepository.findAll();
+        assertThat(codeoflawList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkShortTitleIsRequired() throws Exception {
+        int databaseSizeBeforeTest = codeoflawRepository.findAll().size();
+        // set the field null
+        codeoflaw.setShortTitle(null);
 
         // Create the Codeoflaw, which fails.
 

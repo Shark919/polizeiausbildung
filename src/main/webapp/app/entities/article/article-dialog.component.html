@@ -47,7 +47,7 @@
             <label for="field_codeoflaw">Codeoflaw</label>
             <select class="form-control" id="field_codeoflaw" name="codeoflaw" [(ngModel)]="article.codeoflaw" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="codeoflawOption.id === article.codeoflaw?.id ? article.codeoflaw : codeoflawOption" *ngFor="let codeoflawOption of codeoflaws; trackBy: trackCodeoflawById">{{codeoflawOption.id}}</option>
+                <option [ngValue]="codeoflawOption.id === article.codeoflaw?.id ? article.codeoflaw : codeoflawOption" *ngFor="let codeoflawOption of codeoflaws; trackBy: trackCodeoflawById">{{codeoflawOption.shortTitle}}</option>
             </select>
         </div>
     </div>

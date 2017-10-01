@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="20171001203302" author="Shark919">
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/codesoflaw.csv"
+                  separator=";"
+                  tableName="codeoflaw"/>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/articles.csv"
+                  separator=";"
+                  tableName="article"/>
+    </changeSet>
+</databaseChangeLog>

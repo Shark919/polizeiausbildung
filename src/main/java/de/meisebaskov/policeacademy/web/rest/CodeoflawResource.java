@@ -1,20 +1,12 @@
 package de.meisebaskov.policeacademy.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import de.meisebaskov.policeacademy.domain.Article;
 import de.meisebaskov.policeacademy.domain.Codeoflaw;
-import de.meisebaskov.policeacademy.service.ArticleService;
 import de.meisebaskov.policeacademy.service.CodeoflawService;
 import de.meisebaskov.policeacademy.web.rest.util.HeaderUtil;
-import de.meisebaskov.policeacademy.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,11 +33,8 @@ public class CodeoflawResource {
 
     private final CodeoflawService codeoflawService;
 
-    private final ArticleService articleService;
-
-    public CodeoflawResource(CodeoflawService codeoflawService, ArticleService articleService) {
+    public CodeoflawResource(CodeoflawService codeoflawService) {
         this.codeoflawService = codeoflawService;
-        this.articleService = articleService;
     }
 
     /**
@@ -142,21 +131,6 @@ public class CodeoflawResource {
     public List<Codeoflaw> searchCodeoflaws(@RequestParam String query) {
         log.debug("REST request to search Codeoflaws for query {}", query);
         return codeoflawService.search(query);
-    }
-
-    /*@GetMapping("/codeoflawLike")
-    @Timed
-    public ResponseEntity<Codeoflaw> findFlashcardsByTitleIsLike(@RequestParam(value = "flashcardTitle") String title, @ApiParam Pageable pageable) {
-        Page<Codeoflaw> page = codeoflawService.findCodesoflawByTitleIsLike(title, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/management/audits");
-        return new ResponseEntity(page.getContent(), headers, HttpStatus.OK);
-    }*/
-
-    @GetMapping("/codeoflaws/articleSearch")
-    @Timed
-    public List<Article> searchArticles(@RequestParam String query) {
-        log.debug("REST request to search Articles for query {}", query);
-        return articleService.search(query);
     }
 
 }

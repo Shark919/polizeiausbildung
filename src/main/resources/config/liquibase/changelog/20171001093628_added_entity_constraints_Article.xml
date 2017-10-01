@@ -7,7 +7,7 @@
         Added the constraints for entity Article.
     -->
     <changeSet id="20171001093628-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="codeoflaw_id"
                                  baseTableName="article"
                                  constraintName="fk_article_codeoflaw_id"

@@ -27,7 +27,9 @@ public class Codeoflaw implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "short_title")
+    @NotNull
+    @Size(min = 2)
+    @Column(name = "short_title", nullable = false)
     private String shortTitle;
 
     public Long getId() {
