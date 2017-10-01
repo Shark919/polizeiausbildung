@@ -1,22 +1,22 @@
 <div class="buttons_container">
 <div class="buttons_background">
-    <div class="button_base b05_3d_roll">
+    <div id="codeoflaw1" class="button_base b05_3d_roll" (click)="getCodeOfLawContentByKeyword('BGB')">
         <div>Bürgerliches Gesetzbuch (BGB)</div>
         <div>Bürgerliches Gesetzbuch (BGB)</div>
     </div>
-    <div class="button_base b05_3d_roll">
+    <div id="codeoflaw2" class="button_base b05_3d_roll" (click)="getContent('BUrlG')">
         <div>Bundesurlaubsgesetz (BUrlG)</div>
         <div>Bundesurlaubsgesetz (BUrlG)</div>
     </div>
-    <div class="button_base b05_3d_roll">
+    <div id="codeoflaw3" class="button_base b05_3d_roll" (click)="getContent('EFZG')">
         <div>Entgeltfortzahlungsgesetz (EFZG)</div>
         <div>Entgeltfortzahlungsgesetz (EFZG)</div>
     </div>
-    <div class="button_base b05_3d_roll">
+    <div id="codeoflaw4" class="button_base b05_3d_roll" (click)="getContent('GKG')">
         <div>Gerichtskostengesetz (GKG)</div>
         <div>Gerichtskostengesetz (GKG)</div>
     </div>
-    <div class="button_base b05_3d_roll">
+    <div id="codeoflaw5" class="button_base b05_3d_roll" (click)="getContent('GmbHG')">
         <div>GmbH Gesetz (GmbHG)</div>
         <div>GmbH Gesetz (GmbHG)</div>
     </div>
@@ -65,4 +65,9 @@
         <div>Zivilprozessordnung (ZPO)</div>
     </div>
 </div>
+</div>
+<div class="container_law_content">
+    <div>
+        {{ lawcontent }}
+    </div>
 </div>

@@ -106,7 +106,8 @@ module.exports = (options) => {
                 // { from: './src/main/webapp/sw.js', to: 'sw.js' },
                 { from: './node_modules/tinymce/plugins', to: 'plugins' },
                 { from: './node_modules/tinymce/themes', to: 'themes' },
-                { from: './node_modules/tinymce/skins', to: 'skins' }
+                { from: './node_modules/tinymce/skins', to: 'skins' },
+                { from: './node_modules/tinymce', to: 'tinymce' }
             ]),
             new webpack.ProvidePlugin({
                 $: "jquery",

@@ -6,10 +6,7 @@ import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService } fr
 import { Flashcard } from './flashcard.model';
 import { FlashcardService } from './flashcard.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
-import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
-import {EntityService} from "../entity.service";
-import {forEach} from "@angular/router/src/utils/collection";
-import {of} from "rxjs/observable/of";
+import {EntityService} from '../entity.service';
 
 function replaceAll(str, find, replace) {
     return str.replace(new RegExp(find, 'g'), replace);
@@ -69,16 +66,16 @@ flashcardsNoHTML : Flashcard[];
         this.loadAll();
     }
 
-    searchFlashcardByTitleLike(searchKeyword){
-        this.entityService.searchFlashcardByTitleLike(searchKeyword+"%").subscribe((data) =>{
+    searchFlashcardByTitleLike(searchKeyword) {
+        this.entityService.searchFlashcardByTitleLike(searchKeyword+"%").subscribe((data) => {
             let body = JSON.parse(data._body);
             this.flashcards = body;
             this.flashcardsNoHTML = body;
 
-            for(var i = 0; i < this.flashcardsNoHTML.length; i++){
-                var descriptionWithHTML = this.flashcardsNoHTML[i].description;
-                var regex = /<[^>]*>/;
-                var descriptionNoHTML = replaceAll(descriptionWithHTML, regex, "");
+            for(let i = 0; i < this.flashcardsNoHTML.length; i++) {
+                let descriptionWithHTML = this.flashcardsNoHTML[i].description;
+                let regex = /<[^>]*>/;
+                let descriptionNoHTML = replaceAll(descriptionWithHTML, regex, "");
                 this.flashcardsNoHTML[i].description = descriptionNoHTML;
             }
             console.log(body);

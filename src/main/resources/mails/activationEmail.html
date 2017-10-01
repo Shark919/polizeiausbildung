@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title th:text="#{email.activation.title}">JHipster activation</title>
+        <title th:text="#{email.activation.title}">Aktivierung Polizeiausbildung Account</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="shortcut icon" href="${baseUrl}/favicon.ico" />
     </head>
     <body>
         <p th:text="#{email.activation.greeting(${user.login})}">
-            Dear
+            Grüße!
         </p>
         <p th:text="#{email.activation.text1}">
-            Your JHipster account has been created, please click on the URL below to activate it:
+            Dein Account bei Polizeiausbildung wurde erfolgreich aktiviert, klicke auf den folgenden Link, um die Aktivierung abzuschließen:
         </p>
         <p>
             <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}"
-               th:text="@{|${baseUrl}/#/activate?key=${user.activationKey}|}">Activation Link</a>
+               th:text="@{|${baseUrl}/#/activate?key=${user.activationKey}|}">Aktivierungslink</a>
         </p>
         <p>
-            <span th:text="#{email.activation.text2}">Regards, </span>
+            <span th:text="#{email.activation.text2}">Danke!</span>
             <br/>
-            <em th:text="#{email.signature}">JHipster.</em>
+            <em th:text="#{email.signature}">Dein Polizeiausbildungsteam.</em>
         </p>
     </body>
 </html>
