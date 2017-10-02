@@ -35,7 +35,7 @@ spring:
             hibernate.generate_statistics: false
     data:
         elasticsearch:
-            cluster-name:
+            cluster-name: elasticsearch_production
             cluster-nodes: localhost:9300
     mail:
         host: smtp.gmail.com
