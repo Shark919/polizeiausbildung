@@ -1,4 +1,10 @@
 <div class="row">
+    <button class="btn btn-primary contact_feedback" (click)="feedback()">
+        <span class="fa fa-info-circle"></span>
+        <span class="hidden-sm-down" >
+             Feedback / Kontakt
+            </span>
+    </button>
     <div class="col-md-2" style="padding-left:40px">
         <span class="hipster img-fluid img-rounded"></span>
     </div>
@@ -14,7 +20,7 @@
 
             <div class="alert alert-warning" *ngSwitchCase="false">
                 <span>Wenn du dich </span>
-                <a class="alert-link" (click)="login()">einloggen</a><span> möchtest, probier folgende Standardaccounts <br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
+                <a class="alert-link" (click)="login()">einloggen</a><span> möchtest, probier folgenden Standardaccount <br/>- User (Benutzer="user" und Passwort="user").</span>
             </div>
 
             <div class="alert alert-warning" *ngSwitchCase="false">

@@ -19,6 +19,9 @@ import {
     JhiLoginModalComponent
 } from './';
 import {SearchComponent} from "./search/search.component";
+import {FeedbackService} from "./feedback/feedback.service";
+import {FeedbackModalComponent} from "./feedback/feedback.component";
+import {FeedbackModalService} from "./feedback/feedback-modal.service";
 
 @NgModule({
     imports: [
@@ -29,11 +32,14 @@ import {SearchComponent} from "./search/search.component";
         JhiSocialComponent,
         TinyEditorComponent,
         SearchComponent,
+        FeedbackModalComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective
     ],
     providers: [
         LoginService,
+        FeedbackService,
+        FeedbackModalService,
         LoginModalService,
         AccountService,
         StateStorageService,
@@ -44,13 +50,14 @@ import {SearchComponent} from "./search/search.component";
         UserService,
         DatePipe
     ],
-    entryComponents: [JhiLoginModalComponent],
+    entryComponents: [JhiLoginModalComponent, FeedbackModalComponent],
     exports: [
         PolizeiausbildungSharedCommonModule,
         JhiSocialComponent,
         TinyEditorComponent,
         SearchComponent,
         JhiLoginModalComponent,
+        FeedbackModalComponent,
         HasAnyAuthorityDirective,
         DatePipe
     ],

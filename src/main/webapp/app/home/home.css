@@ -10,6 +10,18 @@ Main page styles
     background-size: contain;
 }
 
+
+.contact_feedback{
+    position: fixed;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateZ(0) translateY(-50%) rotate(-90deg);
+    transform: translateZ(0) translateY(-50%) rotate(-90deg);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    z-index: 2;
+}
+
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media
 only screen and (-webkit-min-device-pixel-ratio: 2),
