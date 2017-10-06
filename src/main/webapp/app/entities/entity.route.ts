@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import {searchRoute} from "./search/search.route";
+import {searchRoute} from "../shared/search/search.route";
 import {articleRoute} from "./article/article.route";
 import {codeoflawRoute} from "./codeoflaw/codeoflaw.route";
 

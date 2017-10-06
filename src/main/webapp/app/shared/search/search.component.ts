@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EntityService } from '../entity.service';
+import { EntityService } from '../../entities/entity.service';
 import { RouterModule, Routes } from '@angular/router';
+//import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition
+} from '@angular/animations';
 @Component({
     selector: 'search',
     templateUrl: './search.component.html',
@@ -42,7 +50,7 @@ export class SearchComponent implements OnInit {
     }
 
     searchFlashcardByTitleLike(searchKeyword){
-        this.entityService.searchFlashcardByTitleLike(searchKeyword+"%").subscribe((data) =>{
+        this.entityService.searchFlashcardByTitleLike("%"+searchKeyword+"%").subscribe((data) =>{
             let body = JSON.parse(data._body);
             this.flashcards = body;
             console.log(body);

@@ -11,7 +11,7 @@ import {
     accountState
 } from './';
 
-import {SearchComponent} from "./search/search.component";
+import {SearchComponent} from "../shared/search/search.component";
 import {CodeoflawComponent} from "./codeoflaw/codeoflaw.component";
 import {ArticleComponent} from "./article/article.component";
 
@@ -24,7 +24,7 @@ import {ArticleComponent} from "./article/article.component";
         RouterModule.forRoot(accountState, { useHash: true })
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
-    declarations: [SearchComponent],
+    declarations: [],
     entryComponents: [],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -3,6 +3,7 @@ import './vendor.ts';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ng2-webstorage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PolizeiausbildungSharedModule, UserRouteAccessService } from './shared';
 import { PolizeiausbildungHomeModule } from './home/home.module';
@@ -29,6 +30,7 @@ import {
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         PolizeiausbildungSharedModule,

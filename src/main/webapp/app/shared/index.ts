@@ -20,6 +20,8 @@ export * from './model/base-entity';
 export {TinyEditorComponent} from './tiny-editor/tiny-editor.component';
 export * from './social/social.service';
 export * from './social/social.component';
+export * from './search/search.component';
+export * from './search/search.route';
 export * from './shared-libs.module';
 export * from './shared-common.module';
 export * from './shared.module';

@@ -18,6 +18,7 @@ import {
     SocialService,
     JhiLoginModalComponent
 } from './';
+import {SearchComponent} from "./search/search.component";
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import {
     declarations: [
         JhiSocialComponent,
         TinyEditorComponent,
+        SearchComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective
     ],
@@ -47,6 +49,7 @@ import {
         PolizeiausbildungSharedCommonModule,
         JhiSocialComponent,
         TinyEditorComponent,
+        SearchComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective,
         DatePipe
