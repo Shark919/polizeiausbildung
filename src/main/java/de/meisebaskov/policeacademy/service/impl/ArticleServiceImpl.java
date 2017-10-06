@@ -6,6 +6,8 @@ import de.meisebaskov.policeacademy.repository.ArticleRepository;
 import de.meisebaskov.policeacademy.repository.search.ArticleSearchRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -97,5 +99,9 @@ public class ArticleServiceImpl implements ArticleService{
         return StreamSupport
             .stream(articleSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
+    }
+
+    public Page<Article> findArticlesByCodeoflawShortTitle(String shorttitle, Pageable pageable){
+        return articleRepository.findArticlesByCodeoflawShortTitle(shorttitle, pageable);
     }
 }

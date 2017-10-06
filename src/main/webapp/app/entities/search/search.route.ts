@@ -8,7 +8,7 @@ export const searchRoute: Route = {
     component: SearchComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Search'
+        pageTitle: 'Polizeiakademie'
     },
     canActivate: [UserRouteAccessService]
 };

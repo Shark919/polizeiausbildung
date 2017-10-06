@@ -7,26 +7,28 @@ import { Article } from '../../entities/article/article.model';
 import { ArticleService } from '../../entities/article/article.service';
 import {ResponseWrapper} from "../../shared/model/response-wrapper.model";
 import {JhiAlertService} from "ng-jhipster";
+import {EntityService} from "../../entities/entity.service";
 
 @Component({
     selector: 'tree',
     templateUrl: './tree.component.html',
     providers: [
-        CodesOfLawService
+        CodesOfLawService,
+        EntityService
     ]
 })
 export class TreeComponent implements OnInit {
 
     success: boolean;
     error: string;
-    lawcontent: string;
     articles: Article[];
     paragraphs;
 
     constructor(
         private CodesOfLawService: CodesOfLawService,
         private alertService: JhiAlertService,
-        private articleService: ArticleService
+        private articleService: ArticleService,
+        private entityService: EntityService
     ) {
     }
 
@@ -36,18 +38,19 @@ export class TreeComponent implements OnInit {
     }
 
     getContent(codeOfLaw){
-        this.lawcontent = "Inhalte zum Gesetzbuch "+codeOfLaw;
+        console.log("get content method with code of law: "+codeOfLaw);
         for(let i = 1; i < 6; i++){
             $('#codeoflaw'+i).css({
                 'color': 'white',
             });
         }
-        this.articleService.search({
-            query: codeOfLaw.toString(), //codeoflaw, todo: add searchByShortTitle, this one is just an easy workaround
-        }).subscribe(
-            (res: ResponseWrapper) => this.articles = res.json,
-            (res: ResponseWrapper) => this.onError(res.json)
-        );
+        //codeoflaw, todo: add searchByShortTitle, this one is just an easy workaround
+        this.entityService.findArticlesByCodeoflawShortTitle(codeOfLaw.toString()).subscribe((data) => { //this.currentSearch
+            let body = JSON.parse(data._body);
+            this.articles = body;
+
+            console.log(body);
+        }, (error) => this.onError(error));
         return;
     }
 

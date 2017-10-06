@@ -8,7 +8,7 @@ export const treeRoute: Route = {
     component: TreeComponent,
     data: {
         authorities: ['ROLE_USER'],
-        pageTitle: 'Tree'
+        pageTitle: 'Polizeiakademie'
     },
     canActivate: [UserRouteAccessService]
 };

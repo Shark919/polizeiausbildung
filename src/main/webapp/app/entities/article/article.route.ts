@@ -15,7 +15,7 @@ export const articleRoute: Routes = [
         component: ArticleComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Articles'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const articleRoute: Routes = [
         component: ArticleDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Articles'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const articlePopupRoute: Routes = [
         component: ArticlePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Articles'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const articlePopupRoute: Routes = [
         component: ArticlePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Articles'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const articlePopupRoute: Routes = [
         component: ArticleDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Articles'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

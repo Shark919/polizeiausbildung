@@ -8,8 +8,9 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 @Injectable()
 export class ArticleService {
 
+    private ressourceSearchLikeUrl = 'api/articles/like';
     private resourceUrl = 'api/articles';
-    private resourceSearchUrl = 'api/_search/articles';
+    private resourceSearchUrl = 'api/_search/articles'; //elasticsearch
 
     constructor(private http: Http) { }
 
@@ -47,6 +48,16 @@ export class ArticleService {
         const options = createRequestOption(req);
         return this.http.get(this.resourceSearchUrl, options)
             .map((res: any) => this.convertResponse(res));
+    }
+
+    findArticlesByCodeoflawShortTitle(shorttitle: string): Observable<any> {
+        console.log("findArticlesByCodeoflawShortTitle: "+shorttitle);
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('shorttitle', shorttitle);
+
+        return this.http.get('api/articlesLike', {
+            search: params
+        }).map((res: Response) => res);
     }
 
     private convertResponse(res: Response): ResponseWrapper {

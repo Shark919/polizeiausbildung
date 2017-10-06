@@ -1,6 +1,9 @@
 package de.meisebaskov.policeacademy.service;
 
 import de.meisebaskov.policeacademy.domain.Article;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
@@ -42,8 +45,10 @@ public interface ArticleService {
      * Search for the article corresponding to the query.
      *
      *  @param query the query of the search
-     *  
+     *
      *  @return the list of entities
      */
     List<Article> search(String query);
+
+    public Page<Article> findArticlesByCodeoflawShortTitle(String shorttitle, Pageable pageable);
 }

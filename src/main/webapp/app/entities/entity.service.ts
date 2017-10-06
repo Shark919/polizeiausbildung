@@ -29,10 +29,21 @@ export class EntityService {
     }
 
     searchFlashcardByTitleLike(flashcardTitle: string): Observable<any> {
+        console.log("searchFlashcardByTitleLike: "+flashcardTitle);
         const params: URLSearchParams = new URLSearchParams();
         params.set('flashcardTitle', flashcardTitle);
 
         return this.http.get('api/flashcardLike', {
+            search: params
+        }).map((res: Response) => res);
+    }
+
+    findArticlesByCodeoflawShortTitle(shorttitle: string): Observable<any> {
+        console.log("findArticlesByCodeoflawShortTitle: "+shorttitle);
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('shorttitle', shorttitle);
+
+        return this.http.get('api/articlesLike', { //articlesLike
             search: params
         }).map((res: Response) => res);
     }

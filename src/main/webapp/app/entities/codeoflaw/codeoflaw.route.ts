@@ -15,7 +15,7 @@ export const codeoflawRoute: Routes = [
         component: CodeoflawComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Codeoflaws'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const codeoflawRoute: Routes = [
         component: CodeoflawDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Codeoflaws'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const codeoflawPopupRoute: Routes = [
         component: CodeoflawPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Codeoflaws'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const codeoflawPopupRoute: Routes = [
         component: CodeoflawPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Codeoflaws'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const codeoflawPopupRoute: Routes = [
         component: CodeoflawDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Codeoflaws'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

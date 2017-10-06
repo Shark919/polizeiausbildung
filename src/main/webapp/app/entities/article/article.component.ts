@@ -5,12 +5,16 @@ import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService } fr
 
 import { Article } from './article.model';
 import { ArticleService } from './article.service';
+import { EntityService} from "../entity.service";
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-article',
-    templateUrl: './article.component.html'
+    templateUrl: './article.component.html',
+    providers: [
+        EntityService
+    ]
 })
 export class ArticleComponent implements OnInit, OnDestroy {
 articles: Article[];
@@ -20,6 +24,7 @@ articles: Article[];
 
     constructor(
         private articleService: ArticleService,
+        private entityService: EntityService,
         private alertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private activatedRoute: ActivatedRoute,
@@ -30,12 +35,7 @@ articles: Article[];
 
     loadAll() {
         if (this.currentSearch) {
-            this.articleService.search({
-                query: this.currentSearch,
-                }).subscribe(
-                    (res: ResponseWrapper) => this.articles = res.json,
-                    (res: ResponseWrapper) => this.onError(res.json)
-                );
+            this.searchLike();
             return;
        }
         this.articleService.query().subscribe(
@@ -45,6 +45,15 @@ articles: Article[];
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
+    }
+
+    searchLike(){
+        this.entityService.findArticlesByCodeoflawShortTitle(this.currentSearch).subscribe((data) => { //this.currentSearch
+            let body = JSON.parse(data._body);
+            this.articles = body;
+
+            console.log(body);
+        }, (error) => this.onError(error));
     }
 
     search(query) {

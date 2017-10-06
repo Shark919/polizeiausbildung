@@ -15,7 +15,7 @@ export const flashcardRoute: Routes = [
         component: FlashcardComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Flashcards'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const flashcardRoute: Routes = [
         component: FlashcardDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Flashcards'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const flashcardPopupRoute: Routes = [
         component: FlashcardPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Flashcards'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const flashcardPopupRoute: Routes = [
         component: FlashcardPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Flashcards'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const flashcardPopupRoute: Routes = [
         component: FlashcardDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Flashcards'
+            pageTitle: 'Polizeiakademie'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
