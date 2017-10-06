@@ -17,8 +17,8 @@
     <br>
     <div class="row">
         <div class="col-md-8">
-            <ul>
-                <li *ngFor="let flashcard of flashcards" style="list-style-type: none;">
+            <ul [@listAnimation]="flashcards.length">
+                <li *ngFor="let flashcard of flashcardsNoHTML" style="list-style-type: none;">
                     <a class="flashcardTitleLink" routerLink="/editor" routerLinkActive="active"><h3>{{flashcard.title}}</h3></a>
                     <h4>{{flashcard.description}}</h4>
                 </li>

@@ -24,10 +24,8 @@
         </div>
     </div>
     <div class="col-md-11" [ngSwitch]="isAuthenticated()">
-        <div *ngSwitchCase="false" [@enterTrigger]="'fadeIn'">
-        </div>
-        <div *ngSwitchCase="true" [@enterTrigger]="'fadeIn'">
-            <search></search>
+        <div>
+            <search *ngSwitchCase="true" [@myAwesomeAnimation]="'fadeIn'"></search>
         </div>
     </div>
 </div>

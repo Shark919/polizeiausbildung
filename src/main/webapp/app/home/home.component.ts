@@ -3,14 +3,31 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { Account, LoginModalService, Principal } from '../shared';
-
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+    query,
+    stagger,
+    keyframes
+} from '@angular/animations';
 @Component({
     selector: 'jhi-home',
     templateUrl: './home.component.html',
     styleUrls: [
         'home.css'
+    ],
+    animations: [
+        trigger('myAwesomeAnimation', [
+            state('fadeIn', style({
+                opacity: '1',
+                transform: 'translateY(100px)'
+            })),
+            transition('void => *', [style({opacity: '0'}), animate('1000ms')])
+        ])
     ]
-
 })
 export class HomeComponent implements OnInit {
     account: Account;
