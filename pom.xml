@@ -10,7 +10,7 @@
     </parent>
     <groupId>de.meisebaskov.policeacademy</groupId>
     <artifactId>polizeiausbildung</artifactId>
-    <version>0.1.1-Closed Alpha</version>
+    <version>0.1.2-Closed Alpha</version>
     <packaging>war</packaging>
     <name>Polizeiausbildung</name>
 
