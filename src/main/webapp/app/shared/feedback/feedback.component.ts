@@ -17,6 +17,7 @@ export class FeedbackModalComponent implements AfterViewInit {
     rememberMe: boolean;
     username: string;
     credentials: any;
+    feedback:string;
 
     constructor(
         private eventManager: JhiEventManager,
@@ -32,7 +33,11 @@ export class FeedbackModalComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []);
+        this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#feedback'), 'focus', []);
+    }
+
+    sendMail(){
+        this.activeModal.dismiss('login success');
     }
 
 }

@@ -1,8 +1,19 @@
-.buttons_background{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 180px;
+@media screen and (max-width: 900px) {
+    .buttons_background {
+        display: contents;
+        justify-content: space-between;
+        width: 100%;
+        height: 180px;
+    }
+}
+@media screen and (min-width: 900px) {
+    .buttons_background {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 180px;
+    }
+
 }
 .buttons_container{
     display: flex;
@@ -14,7 +25,6 @@
     width:100%;
     position:relative;
 }
-
 .button_base {
     margin: 0;
     border: 0;
@@ -28,8 +38,15 @@
     -moz-box-sizing: border-box;
     -webkit-user-select: none;
     cursor: default;
-    font-weight:400;
+    font-weight: 400;
 }
+@media screen and (max-width: 900px) {
+    .button_base {
+        left: 20%;
+        width:60%;
+    }
+}
+
 .button_base:hover {
     cursor: pointer;
 }

@@ -74,16 +74,28 @@ Generic styles
     color: #fff;
     padding: 47px 0 1px 0;
 }
+@media screen and (max-width: 900px){
+    .footer {
+        display:none;
+        position: absolute;
+    }
+}
 
 .footer_container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 50%;
     left: 25%;
     position: absolute;
     bottom: 0;
+    max-height: 57px;
 }
 
+@media screen and (max-width: 900px){
+    .footer_container{
+        display:none;
+    }
+}
 .footer_element{
     cursor: default;
     margin-bottom: 8px;

@@ -1,10 +1,17 @@
 <div class="modal-header">
-    <h4 class="modal-title">Feedback</h4>
+    <h4 class="modal-title">Dein Feedback ist uns wichtig!</h4>
 </div>
 <div class="modal-body">
     <div class="row">
-        <div class="col-md-6">
-           test test
+        <div class="col-md">
+            <form class="form" role="form" (ngSubmit)="sendMail()">
+                Wir arbeiten kontinuierlich daran, diese Seite zu verbessern. Damit wir noch effizienter sind und dir noch schneller die neusten Features geben können, brauchen wir deine Meinung!
+                <div class="form-group">
+                    <textarea cols="40" rows="5" type="text" class="form-control" name="feedback" id="feedback" placeholder="Schreib uns deine Ideen, Anregungen und Kritik!"
+                              [(ngModel)]="feedback"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Abschicken</button>
+            </form>
         </div>
     </div>
 </div>

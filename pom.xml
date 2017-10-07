@@ -8,10 +8,10 @@
         <version>1.5.4.RELEASE</version>
         <relativePath/>
     </parent>
-
+yarn
     <groupId>de.meisebaskov.policeacademy</groupId>
     <artifactId>polizeiausbildung</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0-Closed Alpha</version>
     <packaging>war</packaging>
     <name>Polizeiausbildung</name>
 
