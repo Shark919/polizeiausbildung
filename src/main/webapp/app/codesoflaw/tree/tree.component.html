@@ -66,7 +66,7 @@
     </div>
 </div>
 </div>
-<div class="table-responsive codesoflaw_table" *ngIf="articles">
+<div class="table-responsive codesoflaw_table" *ngIf="articles" [@myAwesomeAnimation]="'fadeIn'">
     <table class="table table-striped">
         <thead>
         <tr>
@@ -76,7 +76,7 @@
             <th></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody [@listAnimation]="articles.length">
         <tr *ngFor="let article of articles ;trackBy: trackId">
             <td>{{article.title}}</td>
             <td>{{article.legaltext}}</td>

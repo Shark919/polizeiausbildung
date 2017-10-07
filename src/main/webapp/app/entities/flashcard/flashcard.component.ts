@@ -8,6 +8,17 @@ import { FlashcardService } from './flashcard.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import {EntityService} from '../entity.service';
 
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+    keyframes,
+    query,
+    stagger
+} from '@angular/animations';
+
 function replaceAll(str, find, replace) {
     return str.replace(new RegExp(find, 'g'), replace);
 }
@@ -17,6 +28,37 @@ function replaceAll(str, find, replace) {
     templateUrl: './flashcard.component.html',
     providers: [
         EntityService
+    ],
+    animations: [
+
+        trigger('listAnimation', [
+            transition('* => *', [
+
+                query(':enter', style({ opacity: 0 }), {optional: true}),
+
+                query(':enter', stagger('150ms', [
+                    animate('350ms ease-in', keyframes([
+                        style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
+                        style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+                        style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
+                    ]))]), {optional: true}),
+
+                //query(':leave', style({ opacity: 1 }), {optional: true}),
+
+                //query(':leave', stagger('1ms', [
+                //    animate('100ms ease-in', keyframes([
+                //        style({opacity: 0, transform: 'translateX(-50%)'}),
+                //   ]))]), {optional: true})
+            ])
+        ]),
+
+        trigger('myAwesomeAnimation', [
+            state('fadeIn', style({
+                opacity: '1',
+                //transform: 'translateY(100px)'
+            })),
+            transition('void => *', [style({opacity: '0'}), animate('600ms')])
+        ])
     ]
 })
 
@@ -87,6 +129,7 @@ flashcardsNoHTML : Flashcard[];
         this.loadAll();
     }
     ngOnInit() {
+        this.searchFlashcardByTitleLike("zzzzzzzzz");
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;

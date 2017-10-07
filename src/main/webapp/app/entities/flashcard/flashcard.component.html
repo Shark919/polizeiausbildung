@@ -25,7 +25,7 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="flashcardsNoHTML">
+    <div class="table-responsive" *ngIf="flashcardsNoHTML" [@myAwesomeAnimation]="'fadeIn'">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -34,7 +34,7 @@
             <th></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody [@listAnimation]="flashcards.length">
             <tr *ngFor="let flashcard of flashcardsNoHTML ;trackBy: trackId">
                 <td>{{flashcard.title}}</td>
                 <td>{{flashcard.description}}</td>
