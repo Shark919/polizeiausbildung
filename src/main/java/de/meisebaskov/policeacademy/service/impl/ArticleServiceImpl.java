@@ -101,7 +101,11 @@ public class ArticleServiceImpl implements ArticleService{
             .collect(Collectors.toList());
     }
 
-    public Page<Article> findArticlesByCodeoflawShortTitle(String shorttitle, Pageable pageable){
-        return articleRepository.findArticlesByCodeoflawShortTitle(shorttitle, pageable);
+    public Page<Article> findTop10000ArticlesByCodeoflawShortTitle(String shorttitle, Pageable pageable){
+        return articleRepository.findTop10000ArticlesByCodeoflawShortTitle(shorttitle, pageable);
+    }
+
+    public Page<Article> findArticlesByLegaltextContainingOrTitleContainingOrCodeoflawContaining(String keyword, Pageable pageable){
+        return articleRepository.findArticlesByLegaltextContaining(keyword, pageable);
     }
 }

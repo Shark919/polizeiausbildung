@@ -15,6 +15,10 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface ArticleRepository extends JpaRepository<Article,Long> {
 
-    Page<Article> findArticlesByCodeoflawShortTitle(String shorttitle, Pageable pageable);
+    Page<Article> findTop10000ArticlesByCodeoflawShortTitle(String shorttitle, Pageable pageable);
+    Page<Article> findArticlesByLegaltextContainingOrTitleContainingOrCodeoflawContaining (String keyword, Pageable pageable);
+    Page<Article> findArticlesByLegaltextContaining (String keyword, Pageable pageable);
+
+
 
 }

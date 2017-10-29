@@ -38,12 +38,31 @@ export class EntityService {
         }).map((res: Response) => res);
     }
 
+    findFlashcardsByDescriptionContains(flashcardDescription: string): Observable<any> {
+        console.log("findFlashcardsByDescriptionContains: "+flashcardDescription);
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('flashcardDescription', flashcardDescription);
+
+        return this.http.get('api/flashcardDescription', {
+            search: params
+        }).map((res: Response) => res);
+    }
+
     findArticlesByCodeoflawShortTitle(shorttitle: string): Observable<any> {
         console.log("findArticlesByCodeoflawShortTitle: "+shorttitle);
         const params: URLSearchParams = new URLSearchParams();
         params.set('shorttitle', shorttitle);
 
         return this.http.get('api/articlesLike', { //articlesLike
+            search: params
+        }).map((res: Response) => res);
+    }
+
+    findArticlesByKeyword(keyword: string): Observable<any> {
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('keyword', keyword);
+
+        return this.http.get('api/articlesKeyword', { //articlesLike
             search: params
         }).map((res: Response) => res);
     }

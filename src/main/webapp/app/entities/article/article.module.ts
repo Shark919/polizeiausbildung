@@ -14,6 +14,7 @@ import {
     articleRoute,
     articlePopupRoute,
 } from './';
+import {EntityService} from "../entity.service";
 
 const ENTITY_STATES = [
     ...articleRoute,
@@ -43,6 +44,7 @@ const ENTITY_STATES = [
     providers: [
         ArticleService,
         ArticlePopupService,
+        EntityService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -8,6 +8,7 @@ import { ArticleComponent } from './article.component';
 import { ArticleDetailComponent } from './article-detail.component';
 import { ArticlePopupComponent } from './article-dialog.component';
 import { ArticleDeletePopupComponent } from './article-delete-dialog.component';
+import {FlashcardDetailComponent} from "../flashcard/flashcard-detail.component";
 
 export const articleRoute: Routes = [
     {
@@ -21,6 +22,15 @@ export const articleRoute: Routes = [
     }, {
         path: 'article/:id',
         component: ArticleDetailComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Polizeiakademie'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'flashcard/:id',
+        component: FlashcardDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Polizeiakademie'

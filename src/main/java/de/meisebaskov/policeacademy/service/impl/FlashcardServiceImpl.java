@@ -98,5 +98,8 @@ public class FlashcardServiceImpl implements FlashcardService{
     public Page<Flashcard> findFlashcardsByTitleIsLike(String title, Pageable pageable){
         return flashcardRepository.findFlashcardsByTitleIsLike(title, pageable);
     }
+    public Page<Flashcard> findFlashcardsByDescriptionContains(String title, Pageable pageable){
+        return flashcardRepository.findFlashcardsByDescriptionContains(title, pageable);
+    }
 
 }

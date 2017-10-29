@@ -7,7 +7,7 @@ import {
     Output
 } from '@angular/core';
 
-require('tinymce')
+require('tinymce');
 
 declare var tinymce: any;
 import 'tinymce/themes/modern'

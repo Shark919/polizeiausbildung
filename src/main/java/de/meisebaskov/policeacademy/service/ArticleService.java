@@ -50,5 +50,6 @@ public interface ArticleService {
      */
     List<Article> search(String query);
 
-    public Page<Article> findArticlesByCodeoflawShortTitle(String shorttitle, Pageable pageable);
+    public Page<Article> findTop10000ArticlesByCodeoflawShortTitle(String shorttitle, Pageable pageable);
+    public Page<Article> findArticlesByLegaltextContainingOrTitleContainingOrCodeoflawContaining(String keyword, Pageable pageable);
 }

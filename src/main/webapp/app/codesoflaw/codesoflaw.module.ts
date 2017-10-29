@@ -9,6 +9,8 @@ import {
 } from './';
 
 import {TreeComponent} from "./tree/tree.component";
+import {NodeComponent} from "./tree/node.component";
+import {HierarchyComponent} from "./tree/hierarchy.component";
 
 @NgModule({
     imports: [
@@ -16,7 +18,7 @@ import {TreeComponent} from "./tree/tree.component";
         RouterModule.forRoot(accountState, { useHash: true })
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
-    declarations: [TreeComponent],
+    declarations: [TreeComponent, NodeComponent, HierarchyComponent],
     entryComponents: [],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

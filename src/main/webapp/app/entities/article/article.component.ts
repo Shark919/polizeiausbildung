@@ -48,6 +48,15 @@ articles: Article[];
     }
 
     searchLike(){
+        this.entityService.findArticlesByKeyword('%'+this.currentSearch+'%').subscribe((data) => { //this.currentSearch
+            let body = JSON.parse(data._body);
+            this.articles = body;
+
+            console.log(body);
+        }, (error) => this.onError(error));
+    }
+
+    searchLikeCOL(){
         this.entityService.findArticlesByCodeoflawShortTitle(this.currentSearch).subscribe((data) => { //this.currentSearch
             let body = JSON.parse(data._body);
             this.articles = body;

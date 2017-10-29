@@ -141,5 +141,11 @@ public class FlashcardResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/management/audits");
         return new ResponseEntity(page.getContent(), headers, HttpStatus.OK);
     }
-
+    @GetMapping("/flashcardDescription")
+    @Timed
+    public ResponseEntity<FlashcardDTO> findFlashcardsByDescriptionContains(@RequestParam(value = "flashcardDescription") String description, @ApiParam Pageable pageable) {
+        Page<Flashcard> page = flashcardService.findFlashcardsByTitleIsLike(description, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/management/audits");
+        return new ResponseEntity(page.getContent(), headers, HttpStatus.OK);
+    }
 }

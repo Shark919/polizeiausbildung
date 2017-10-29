@@ -41,6 +41,8 @@ public interface FlashcardService {
 
     Page<Flashcard> findFlashcardsByTitleIsLike(String title, Pageable pageable);
 
+    Page<Flashcard> findFlashcardsByDescriptionContains(String title, Pageable pageable);
+
     /**
      *  Delete the "id" flashcard.
      *

@@ -143,7 +143,15 @@ public class ArticleResource {
     @Timed
     public ResponseEntity<Article> findFlashcardsByTitleIsLike(@RequestParam(value = "shorttitle") String shorttitle, @ApiParam Pageable pageable) {
         log.debug("____________JOOO: "+shorttitle);
-        Page<Article> page = articleService.findArticlesByCodeoflawShortTitle(shorttitle, pageable);
+        Page<Article> page = articleService.findTop10000ArticlesByCodeoflawShortTitle(shorttitle, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/management/audits");
+        return new ResponseEntity(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/articlesKeyword")
+    @Timed
+    public ResponseEntity<Article> findArticlesByKeyword(@RequestParam(value = "keyword") String keyword, @ApiParam Pageable pageable) {
+        Page<Article> page = articleService.findArticlesByLegaltextContainingOrTitleContainingOrCodeoflawContaining(keyword, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/management/audits");
         return new ResponseEntity(page.getContent(), headers, HttpStatus.OK);
     }

@@ -21,4 +21,6 @@ public interface FlashcardRepository extends JpaRepository<Flashcard,Long> {
     Optional<Flashcard> findOneByDescriptionIsContaining(String description);
 
     Page<Flashcard> findFlashcardsByTitleIsLike(String description, Pageable pageable);
+    Page<Flashcard> findFlashcardsByDescriptionContains(String description, Pageable pageable);
+
 }

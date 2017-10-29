@@ -107,6 +107,7 @@ module.exports = (options) => {
                 { from: './node_modules/tinymce/plugins', to: 'plugins' },
                 { from: './node_modules/tinymce/themes', to: 'themes' },
                 { from: './node_modules/tinymce/skins', to: 'skins' },
+                { from: './src/assets/xmldata', to: 'xmldata' },
                 { from: './node_modules/tinymce', to: 'tinymce' }
             ]),
             new webpack.ProvidePlugin({

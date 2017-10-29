@@ -1,6 +1,6 @@
 <div *ngIf="allConfiguration && configuration">
-    <h2>Configuration</h2>
-
+    <h2>Konfiguration</h2>
+    <button (click)="refreshData()" class="btn btn-primary float-right">Gesetzesdaten aktualisieren</button>
     <span>Filter (by prefix)</span> <input type="text" [(ngModel)]="filter" class="form-control">
     <label>Spring configuration</label>
     <table class="table table-striped table-bordered table-responsive d-table">

@@ -4,69 +4,50 @@
         <div>Bürgerliches Gesetzbuch (BGB)</div>
         <div>Bürgerliches Gesetzbuch (BGB)</div>
     </div>
-    <div id="codeoflaw2" class="button_base b05_3d_roll" (click)="getContent('BUrlG')">
-        <div>Bundesurlaubsgesetz (BUrlG)</div>
-        <div>Bundesurlaubsgesetz (BUrlG)</div>
-    </div>
-    <div id="codeoflaw3" class="button_base b05_3d_roll" (click)="getContent('EFZG')">
-        <div>Entgeltfortzahlungsgesetz (EFZG)</div>
-        <div>Entgeltfortzahlungsgesetz (EFZG)</div>
-    </div>
-    <div id="codeoflaw4" class="button_base b05_3d_roll" (click)="getContent('GKG')">
-        <div>Gerichtskostengesetz (GKG)</div>
-        <div>Gerichtskostengesetz (GKG)</div>
-    </div>
-    <div id="codeoflaw5" class="button_base b05_3d_roll" (click)="getContent('GGB')">
+    <div id="codeoflaw5" class="button_base b05_3d_roll" (click)="showNotification('GGB')">
         <div>Grundgesetzbuch (GGB)</div>
         <div>Grundgesetzbuch (GGB)</div>
     </div>
-</div>
-<div class="buttons_background">
-    <div class="button_base b05_3d_roll">
-        <div>Insolvenzordnung (InsO)</div>
-        <div>Insolvenzordnung (InsO)</div>
-    </div>
-    <div class="button_base b05_3d_roll">
-        <div>Kündigungsschutzgesetz (KSchG)</div>
-        <div>Kündigungsschutzgesetz (KSchG)</div>
-    </div>
-    <div class="button_base b05_3d_roll">
-        <div>Mindestlohngesetz (MiLoG)</div>
-        <div>Mindestlohngesetz (MiLoG)</div>
-    </div>
-    <div class="button_base b05_3d_roll">
+    <div class="button_base b05_3d_roll" (click)="showNotification('OWiG')">
         <div>Ordnungswidrigkeitengesetz (OWiG)</div>
         <div>Ordnungswidrigkeitengesetz (OWiG)</div>
     </div>
-    <div class="button_base b05_3d_roll">
+    <div class="button_base b05_3d_roll" (click)="getContent('StGB')">
         <div>Strafgesetzbuch (StGB)</div>
         <div>Strafgesetzbuch (StGB)</div>
     </div>
-</div>
-<div class="buttons_background">
-    <div class="button_base b05_3d_roll">
+    <div class="button_base b05_3d_roll" (click)="showNotification('StPO')">
         <div>Strafprozessordnung (StPO)</div>
         <div>Strafprozessordnung (StPO)</div>
     </div>
-    <div class="button_base b05_3d_roll">
+    <div class="button_base b05_3d_roll" (click)="showNotification('StVG')">
         <div>Straßenverkehrsgesetz (StVG)</div>
         <div>Straßenverkehrsgesetz (StVG)</div>
     </div>
-    <div class="button_base b05_3d_roll">
-        <div>Verwaltungsgerichtsordnung (VwGO)</div>
-        <div>Verwaltungsgerichtsordnung (VwGO)</div>
-    </div>
-    <div class="button_base b05_3d_roll">
-        <div>Verwaltungsverfahrensgesetz (VwVfG)</div>
-        <div>Verwaltungsverfahrensgesetz (VwVfG)</div>
-    </div>
-    <div class="button_base b05_3d_roll">
-        <div>Zivilprozessordnung (ZPO)</div>
-        <div>Zivilprozessordnung (ZPO)</div>
-    </div>
 </div>
 </div>
-<div class="table-responsive codesoflaw_table" *ngIf="articles" [@myAwesomeAnimation]="'fadeIn'">
+<br/>
+<div class="row">
+    <div class="col-sm-12">
+        <form name="searchForm" class="form-inline">
+            <div class="input-group w-100 mt-3">
+                <input type="text" class="form-control" (keyup)="search(currentSearch)" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                    <span class="fa fa-search"></span>
+                </button>
+                <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                    <span class="fa fa-trash-o"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row" *ngIf="articles" [@myAwesomeAnimation]="'fadeIn'">
+    <div class="col-sm-12">
+        <hierarchy [data]="root">loading...</hierarchy>
+    </div>
+</div>
+<div class="table-responsive" style="margin-top: 50px;" *ngIf="articles" [@myAwesomeAnimation]="'fadeIn'">
     <table class="table table-striped">
         <thead>
         <tr>
@@ -76,8 +57,8 @@
             <th></th>
         </tr>
         </thead>
-        <tbody [@listAnimation]="articles.length">
-        <tr *ngFor="let article of articles ;trackBy: trackId">
+        <tbody>
+        <tr *ngFor="let article of (articles ? articles.slice(0,100): []); let i = index">
             <td>{{article.title}}</td>
             <td>{{article.legaltext}}</td>
             <td>
