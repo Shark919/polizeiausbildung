@@ -142,8 +142,8 @@ public class ArticleResource {
     @GetMapping("/articlesLike")
     @Timed
     public ResponseEntity<Article> findFlashcardsByTitleIsLike(@RequestParam(value = "shorttitle") String shorttitle, @ApiParam Pageable pageable) {
-        log.debug("____________JOOO: "+shorttitle);
-        Page<Article> page = articleService.findTop10000ArticlesByCodeoflawShortTitle(shorttitle, pageable);
+        log.debug("articlesLike: "+shorttitle);
+        Page<Article> page = articleService.findTop10000ArticlesByCodeoflawShortTitleOrderByIdAsc(shorttitle, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/management/audits");
         return new ResponseEntity(page.getContent(), headers, HttpStatus.OK);
     }

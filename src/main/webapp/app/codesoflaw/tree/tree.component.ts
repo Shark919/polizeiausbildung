@@ -76,16 +76,13 @@ export class TreeComponent implements OnInit {
         this.success = false;
         this.paragraphs = [];
         this.tree = new TreeModel();
+        this.initializeTree();
+    }
+
+    initializeTree(){
         this.root = this.tree.parse({
             id: '0',
-            children: [
-                {
-                    id: 'Buch 1'
-                },
-                {
-                    id: 'Buch 2'
-                }
-            ]
+            children: []
         });
     }
 
@@ -100,6 +97,7 @@ export class TreeComponent implements OnInit {
         this.entityService.findArticlesByCodeoflawShortTitle(codeOfLaw.toString()).subscribe((data) => { //this.currentSearch
             let body = JSON.parse(data._body);
             this.articles = body;
+            this.initializeTree();
             this.updateData();
         }, (error) => this.onError(error));
         return;
@@ -186,18 +184,19 @@ export class TreeComponent implements OnInit {
 
     searchTreeCompareWithItemList(structureItems, itemIndex){
         let currentItem = structureItems[itemIndex];
-        let nodeFound = this.root.first(function (node) {
+        let nodesFound = this.root.all(function (node) {
             return node.model.id === currentItem;
         });
-        if(!nodeFound){
-            return nodeFound;
-        }
-        let equalPaths = this.checkNodePath(nodeFound,structureItems,currentItem);
-        if(equalPaths == true){
-            return nodeFound
-        } else{
+        if(nodesFound.length < 1){
             return null;
         }
+        for(let i = 0; i < nodesFound.length; i++){
+            let equalPaths = this.checkNodePath(nodesFound[i],structureItems,currentItem);
+            if(equalPaths){
+                return nodesFound[i];
+            }
+        }
+        return null;
     }
 
     checkNodePath(node, structureItems, currentItem){
@@ -211,7 +210,7 @@ export class TreeComponent implements OnInit {
                     result = null;
                 }
             }
-            if(pathEqual = true){
+            if(pathEqual === true){
                 result = node.model.id === currentItem;
             } else{
                 result = null;
