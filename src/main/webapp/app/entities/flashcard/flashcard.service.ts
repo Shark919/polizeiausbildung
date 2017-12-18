@@ -10,6 +10,7 @@ export class FlashcardService {
 
     private resourceUrl = 'api/flashcards';
     private resourceSearchUrl = 'api/_search/flashcards';
+    private queryCompleteUrl = 'api/flashcardQuery';
 
     constructor(private http: Http) { }
 
@@ -47,6 +48,16 @@ export class FlashcardService {
         const options = createRequestOption(req);
         return this.http.get(this.resourceSearchUrl, options)
             .map((res: any) => this.convertResponse(res));
+    }
+
+    queryComplete(query: string): Observable<ResponseWrapper> {
+        console.log("query: "+query);
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('flashcardQuery', query);
+
+        return this.http.get(this.queryCompleteUrl, {
+            search: params
+        }).map((res: Response) => res);
     }
 
     private convertResponse(res: Response): ResponseWrapper {

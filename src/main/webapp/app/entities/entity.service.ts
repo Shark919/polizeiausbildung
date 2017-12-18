@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class EntityService {
 
+    private queryCompleteUrl = 'api/flashcardQuery';
+
     constructor(private http: Http) {}
 
     addFlashcard(flashcardTitle: string, flashcardDescription: string): Observable<any> {
@@ -34,6 +36,16 @@ export class EntityService {
         params.set('flashcardTitle', flashcardTitle);
 
         return this.http.get('api/flashcardLike', {
+            search: params
+        }).map((res: Response) => res);
+    }
+
+    queryComplete(query: string): Observable<any> {
+        console.log("query: "+query);
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('flashcardQuery', query);
+
+        return this.http.get(this.queryCompleteUrl, {
             search: params
         }).map((res: Response) => res);
     }

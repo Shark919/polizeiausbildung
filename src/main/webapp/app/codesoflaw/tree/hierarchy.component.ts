@@ -5,5 +5,5 @@ import {Component, Input, OnInit} from '@angular/core';
     templateUrl: './hierarchy.component.html'
 })
 export class HierarchyComponent {
-    @Input() data: any[];
+    @Input() data: any;
 }

@@ -35,13 +35,15 @@ public interface FlashcardService {
      */
     Flashcard findOne(Long id);
 
-    Flashcard createFlashcard(String title, String description);
+    Flashcard createFlashcard(String title, String category, String description);
 
     Optional<Flashcard> getFlashcardByTitle(String title);
 
     Page<Flashcard> findFlashcardsByTitleIsLike(String title, Pageable pageable);
 
     Page<Flashcard> findFlashcardsByDescriptionContains(String title, Pageable pageable);
+
+    Page<Flashcard> findFlashcardsByDescriptionIsLikeOrTitleIsLike(String query, Pageable pageable);
 
     /**
      *  Delete the "id" flashcard.

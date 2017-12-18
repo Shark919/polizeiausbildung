@@ -26,7 +26,7 @@ import {
     PageRibbonComponent,
     ErrorComponent
 } from './layouts';
-import TreeModule from "angular2-tree-component";
+import { TreeModule }from "angular2-tree-component";
 
 @NgModule({
     imports: [

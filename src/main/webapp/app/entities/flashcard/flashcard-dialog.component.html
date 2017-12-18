@@ -23,6 +23,21 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="form-control-label" for="field_category">Kategorie</label>
+            <input type="text" class="form-control" name="category" id="field_category"
+                   [(ngModel)]="flashcard.category" required minlength="4" />
+            <div [hidden]="!(editForm.controls.category?.dirty && editForm.controls.category?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.category?.errors?.required">
+                    Dies ist ein Pflichtfeld.
+                </small>
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.category?.errors?.minlength">
+                    Mindestens 4 Buchstaben notwendig.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="form-control-label">Beschreibung</label>
             <jhi-tiny-editor
                 [elementId]="'field_description'"

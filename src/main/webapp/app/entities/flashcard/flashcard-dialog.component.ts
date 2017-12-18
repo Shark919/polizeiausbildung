@@ -9,6 +9,16 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Flashcard } from './flashcard.model';
 import { FlashcardPopupService } from './flashcard-popup.service';
 import { FlashcardService } from './flashcard.service';
+import {forEach} from "@angular/router/src/utils/collection";
+import {EntityService} from "../entity.service";
+
+function escapeRegExp(str) {
+    return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+}
 
 @Component({
     selector: 'jhi-flashcard-dialog',
@@ -18,11 +28,14 @@ export class FlashcardDialogComponent implements OnInit {
 
     flashcard: Flashcard;
     isSaving: boolean;
+    obs: any;
+    finalobs: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private flashcardService: FlashcardService,
+        private entityService: EntityService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -37,6 +50,9 @@ export class FlashcardDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
+        this.createHyperlinks();
+    }
+    private saveAndUpdate() {
         if (this.flashcard.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.flashcardService.update(this.flashcard));
@@ -44,6 +60,51 @@ export class FlashcardDialogComponent implements OnInit {
             this.subscribeToSaveResponse(
                 this.flashcardService.create(this.flashcard));
         }
+    }
+
+    private createHyperlinks() {
+       let plannedLinks = this.getPlannedLinks();
+       if (plannedLinks != null){
+           for (let i = 0; i < plannedLinks.length; i++) {
+               this.obs = new Observable(observer => {
+                   this.getURLForItem(observer, plannedLinks[i]);
+               });
+               let url;
+               let subscription = this.obs.subscribe(
+                   value => {
+                       url = value;
+                       this.flashcard.description = replaceAll(this.flashcard.description, plannedLinks[i], url);
+                       this.saveAndUpdate();
+                   }
+               );
+           }
+       } else {
+           this.saveAndUpdate();
+       }
+    }
+
+    private getPlannedLinks() {
+        let plannedLinks;
+        let flashcardText = this.flashcard.description
+        let regex = /\[\[.+\]\]/;
+        let regexGetDoubleBrackets = new RegExp('/\[\[[\w\W]+\]\]');
+        plannedLinks = flashcardText.match(regex);
+        return plannedLinks;
+    }
+
+    private getURLForItem(observer, query) {
+        query = replaceAll(query, "[[", "");
+        query = replaceAll(query, "]]", "");
+        let flashcardId = 0;
+        this.entityService.queryComplete(query).subscribe((data) =>{
+            let body = data.json();
+            // todo: if multiple entries show new page
+            // todo: search in title AND description
+            try {
+                flashcardId = body[0].id;
+                observer.next('<a href=' + window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/#/flashcard/' + flashcardId + '>Polizei</a>');
+            } catch(error) {}
+        }, (error) => this.onSaveError(error));
     }
 
     private subscribeToSaveResponse(result: Observable<Flashcard>) {
@@ -72,7 +133,7 @@ export class FlashcardDialogComponent implements OnInit {
     }
 
     keyupHandler(event){
-        console.log("OMGOMGOMGOMGOMGOGK "+event.toString());
+        //console.log(event.toString());
         this.flashcard.description = event.toString();
     }
 }

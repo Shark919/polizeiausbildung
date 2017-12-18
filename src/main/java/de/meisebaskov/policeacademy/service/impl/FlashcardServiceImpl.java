@@ -80,8 +80,8 @@ public class FlashcardServiceImpl implements FlashcardService{
         flashcardRepository.delete(id);
     }
 
-    public Flashcard createFlashcard(String title, String description) {
-        Flashcard newFlashcard = new Flashcard(title,description);
+    public Flashcard createFlashcard(String title, String category, String description) {
+        Flashcard newFlashcard = new Flashcard(title, category, description);
         flashcardRepository.save(newFlashcard);
         log.debug("Created Information for Flashcard: {}", newFlashcard);
         return newFlashcard;
@@ -100,6 +100,10 @@ public class FlashcardServiceImpl implements FlashcardService{
     }
     public Page<Flashcard> findFlashcardsByDescriptionContains(String title, Pageable pageable){
         return flashcardRepository.findFlashcardsByDescriptionContains(title, pageable);
+    }
+
+    public Page<Flashcard> findFlashcardsByDescriptionIsLikeOrTitleIsLike(String query, Pageable pageable){
+        return flashcardRepository.findFlashcardsByDescriptionIsLikeOrTitleIsLike(query, pageable);
     }
 
 }

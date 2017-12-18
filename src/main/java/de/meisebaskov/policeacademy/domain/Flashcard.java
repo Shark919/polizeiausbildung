@@ -7,9 +7,6 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * A Flashcard.
- */
 @Entity
 @Table(name = "flashcard")
 @Document(indexName = "flashcard")
@@ -17,14 +14,16 @@ public class Flashcard implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Flashcard(String title, String description){
+    public Flashcard(String title, String description, String category){
         this.title = title;
         this.description = description;
+        this.category = category;
     }
 
     public Flashcard(){
         this.title = "DEFAULT";
         this.description = "DEFAULT";
+        this.category = "DEFAULT";
     }
 
     @Id
@@ -39,6 +38,12 @@ public class Flashcard implements Serializable {
 
     @NotNull
     @Size(min = 4)
+    @Column(name = "category", nullable = false)
+    private String category;
+
+    @NotNull
+    @Size(min = 4)
+    @Lob
     @Column(name = "description", nullable = false)
     private String description;
 
@@ -62,6 +67,10 @@ public class Flashcard implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getCategory() { return category; }
+
+    public void setCategory(String category) { this.category = category; }
 
     public String getDescription() {
         return description;
@@ -101,6 +110,7 @@ public class Flashcard implements Serializable {
         return "Flashcard{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
+            ", category='" + getCategory() + "'" +
             ", description='" + getDescription() + "'" +
             "}";
     }
