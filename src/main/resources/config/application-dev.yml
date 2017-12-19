@@ -73,6 +73,8 @@ spring:
 
 liquibase:
     contexts: dev
+    user: 'superadmin'
+    password: 'lollol123'
 
 # ===================================================================
 # To enable SSL, generate a certificate using:

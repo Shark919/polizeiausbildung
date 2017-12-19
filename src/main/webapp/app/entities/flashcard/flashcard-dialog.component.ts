@@ -102,7 +102,7 @@ export class FlashcardDialogComponent implements OnInit {
             // todo: search in title AND description
             try {
                 flashcardId = body[0].id;
-                observer.next('<a href=' + window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/#/flashcard/' + flashcardId + '>Polizei</a>');
+                observer.next('<a href=' + window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/#/flashcard/' + flashcardId + '>'+query+'</a>');
             } catch(error) {}
         }, (error) => this.onSaveError(error));
     }
