@@ -76,7 +76,7 @@ export class FlashcardDialogComponent implements OnInit {
                        this.flashcard.description = replaceAll(this.flashcard.description, plannedLinks[i], url);
                        this.saveAndUpdate();
                    }
-               );
+               );rn sta
            }
        } else {
            this.saveAndUpdate();
