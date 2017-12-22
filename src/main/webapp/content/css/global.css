@@ -2,6 +2,10 @@
 Bootstrap tweaks
 ===============================================================*/
 
+body, html {
+    height: 100%;
+}
+
 body, h1, h2, h3, h4 {
     font-weight: 300;
 }
@@ -30,6 +34,10 @@ Generic styles
 }
 
 /* other generic styles */
+
+.jhi-main {
+    height:100%;
+}
 
 .jh-card {
     padding: 1.5%;
@@ -64,15 +72,16 @@ Generic styles
     opacity: 1;
 }
 
+.jhi-footer {
+    position: static;
+    bottom: 0;
+    width: 100%;
+}
+
 .footer {
     border-top: 1px solid rgba(0,0,0,.125);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
     background-color: #353d47;
     color: #fff;
-    padding: 47px 0 1px 0;
 }
 @media screen and (max-width: 900px){
     .footer {
@@ -82,13 +91,14 @@ Generic styles
 }
 
 .footer_container{
+    position: relative;
     display: flex;
     justify-content: space-evenly;
-    width: 50%;
-    left: 25%;
-    position: absolute;
-    bottom: 0;
+    width: 70%;
+    left: 15%;
     max-height: 57px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 @media screen and (max-width: 900px){
@@ -98,11 +108,15 @@ Generic styles
 }
 .footer_element{
     cursor: default;
-    margin-bottom: 8px;
     color:#ccc;
 }
 .footer_element:hover{
     color:#fff;
+}
+
+.footer-pusher {
+    height: auto !important;
+    min-height: 90%;
 }
 
 /* ==========================================================================
