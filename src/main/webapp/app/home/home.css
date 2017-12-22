@@ -5,7 +5,7 @@ Main page styles
 .hipster {
     display: inline-block;
     width: 347px;
-    height: 497px;
+    height: 100%;
     background: url("../../content/images/gesetz_logo.png") no-repeat center top;
     background-size: contain;
 }
@@ -36,3 +36,7 @@ only screen and (                min-resolution: 2dppx) {
     }
 }
 
+.row > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
