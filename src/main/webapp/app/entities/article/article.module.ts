@@ -14,7 +14,7 @@ import {
     articleRoute,
     articlePopupRoute,
 } from './';
-import {EntityService} from "../entity.service";
+import { EntityService } from "../entity.service";
 
 const ENTITY_STATES = [
     ...articleRoute,
@@ -48,4 +48,4 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PolizeiausbildungArticleModule {}
+export class PolizeiausbildungArticleModule { }

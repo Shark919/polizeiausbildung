@@ -5,7 +5,7 @@ import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService } fr
 
 import { Article } from './article.model';
 import { ArticleService } from './article.service';
-import { EntityService} from "../entity.service";
+import { EntityService } from "../entity.service";
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
@@ -17,7 +17,7 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
     ]
 })
 export class ArticleComponent implements OnInit, OnDestroy {
-articles: Article[];
+    articles: Article[];
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;
@@ -37,7 +37,7 @@ articles: Article[];
         if (this.currentSearch) {
             this.searchLike();
             return;
-       }
+        }
         this.articleService.query().subscribe(
             (res: ResponseWrapper) => {
                 this.articles = res.json;
@@ -47,8 +47,8 @@ articles: Article[];
         );
     }
 
-    searchLike(){
-        this.entityService.findArticlesByKeyword('%'+this.currentSearch+'%').subscribe((data) => { //this.currentSearch
+    searchLike() {
+        this.entityService.findArticlesByKeyword('%' + this.currentSearch + '%').subscribe((data) => { //this.currentSearch
             let body = JSON.parse(data._body);
             this.articles = body;
 
@@ -56,7 +56,7 @@ articles: Article[];
         }, (error) => this.onError(error));
     }
 
-    searchLikeCOL(){
+    searchLikeCOL() {
         this.entityService.findArticlesByCodeoflawShortTitle(this.currentSearch).subscribe((data) => { //this.currentSearch
             let body = JSON.parse(data._body);
             this.articles = body;

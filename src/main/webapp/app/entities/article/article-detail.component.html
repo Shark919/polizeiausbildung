@@ -1,4 +1,3 @@
-
 <div *ngIf="article">
     <h2><span>{{article.title}}</span> {{article.codeoflaw?.title}}</h2>
     <hr>
@@ -9,21 +8,16 @@
                 <br>
             </ng-container>
             <ng-container *ngIf="hasLink(word) == true">
-                <a  [routerLink]="['../flashcard', currentId]">{{currentTitle}}</a>
+                <a [routerLink]="['../flashcard', currentId]">{{currentTitle}}</a>
             </ng-container>
             <ng-container *ngIf="word != '<P>' && hasLink(word) == false">{{word}}</ng-container>
         </ng-container>
     </h4>
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
+    <button type="submit" (click)="previousState()" class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span> Zurück</span>
     </button>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
+    <button type="button" [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span> Bearbeiten</span>
     </button>
 </div>

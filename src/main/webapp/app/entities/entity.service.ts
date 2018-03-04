@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Response, URLSearchParams, Headers, RequestOptions} from '@angular/http';
+import { Http, Response, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 @Injectable()
@@ -7,19 +7,19 @@ export class EntityService {
 
     private queryCompleteUrl = 'api/flashcardQuery';
 
-    constructor(private http: Http) {}
+    constructor(private http: Http) { }
 
     addFlashcard(flashcardTitle: string, flashcardDescription: string): Observable<any> {
         const params: URLSearchParams = new URLSearchParams();
         params.set('flashcardTitle', flashcardTitle);
         params.set('flashcardDescription', flashcardDescription);
-        let body = "{\"flashcardTitle\":\""+flashcardTitle+"\",\"flashcardDescription\":\""+flashcardDescription+"\"}";
+        let body = "{\"flashcardTitle\":\"" + flashcardTitle + "\",\"flashcardDescription\":\"" + flashcardDescription + "\"}";
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({
             headers: headers
         });
-        return this.http.post('api/flashcardCreate', body,options).map((res: Response) => res);
+        return this.http.post('api/flashcardCreate', body, options).map((res: Response) => res);
     }
     searchFlashcardByTitle(flashcardTitle: string): Observable<any> {
         const params: URLSearchParams = new URLSearchParams();
@@ -31,7 +31,7 @@ export class EntityService {
     }
 
     searchFlashcardByTitleLike(flashcardTitle: string): Observable<any> {
-        console.log("searchFlashcardByTitleLike: "+flashcardTitle);
+        console.log("searchFlashcardByTitleLike: " + flashcardTitle);
         const params: URLSearchParams = new URLSearchParams();
         params.set('flashcardTitle', flashcardTitle);
 
@@ -41,7 +41,7 @@ export class EntityService {
     }
 
     queryComplete(query: string): Observable<any> {
-        console.log("query: "+query);
+        console.log("query: " + query);
         const params: URLSearchParams = new URLSearchParams();
         params.set('flashcardQuery', query);
 
@@ -51,7 +51,7 @@ export class EntityService {
     }
 
     findFlashcardsByDescriptionContains(flashcardDescription: string): Observable<any> {
-        console.log("findFlashcardsByDescriptionContains: "+flashcardDescription);
+        console.log("findFlashcardsByDescriptionContains: " + flashcardDescription);
         const params: URLSearchParams = new URLSearchParams();
         params.set('flashcardDescription', flashcardDescription);
 
@@ -61,7 +61,7 @@ export class EntityService {
     }
 
     findArticlesByCodeoflawShortTitle(shorttitle: string): Observable<any> {
-        console.log("findArticlesByCodeoflawShortTitle: "+shorttitle);
+        console.log("findArticlesByCodeoflawShortTitle: " + shorttitle);
         const params: URLSearchParams = new URLSearchParams();
         params.set('shorttitle', shorttitle);
 

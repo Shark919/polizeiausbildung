@@ -6,7 +6,7 @@ import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService } fr
 import { Flashcard } from './flashcard.model';
 import { FlashcardService } from './flashcard.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
-import {EntityService} from '../entity.service';
+import { EntityService } from '../entity.service';
 
 import {
     trigger,
@@ -34,14 +34,14 @@ function replaceAll(str, find, replace) {
         trigger('listAnimation', [
             transition('* => *', [
 
-                query(':enter', style({ opacity: 0 }), {optional: true}),
+                query(':enter', style({ opacity: 0 }), { optional: true }),
 
                 query(':enter', stagger('150ms', [
                     animate('350ms ease-in', keyframes([
-                        style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
-                        style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
-                        style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
-                    ]))]), {optional: true}),
+                        style({ opacity: 0, transform: 'translateY(-75%)', offset: 0 }),
+                        style({ opacity: .5, transform: 'translateY(35px)', offset: 0.3 }),
+                        style({ opacity: 1, transform: 'translateY(0)', offset: 1.0 }),
+                    ]))]), { optional: true }),
 
                 //query(':leave', style({ opacity: 1 }), {optional: true}),
 
@@ -57,14 +57,14 @@ function replaceAll(str, find, replace) {
                 opacity: '1',
                 //transform: 'translateY(100px)'
             })),
-            transition('void => *', [style({opacity: '0'}), animate('600ms')])
+            transition('void => *', [style({ opacity: '0' }), animate('600ms')])
         ])
     ]
 })
 
 export class FlashcardComponent implements OnInit, OnDestroy {
-flashcards: Flashcard[];
-flashcardsNoHTML : Flashcard[];
+    flashcards: Flashcard[];
+    flashcardsNoHTML: Flashcard[];
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;
@@ -82,22 +82,22 @@ flashcardsNoHTML : Flashcard[];
 
     loadAll() {
         this.searchFlashcardByTitleLike("");
-       /* if (this.crrentSearch) {
-            this.flashcardService.search({
-                query: this.currentSearch,
-                }).subscribe(
-                    (res: ResponseWrapper) => this.flashcards = res.json,
-                    (res: ResponseWrapper) => this.onError(res.json)
-                );
-            return;
-       }
-        this.flashcardService.query().subscribe(
-            (res: ResponseWrapper) => {
-                this.flashcards = res.json;
-                this.currentSearch = '';
-            },
-            (res: ResponseWrapper) => this.onError(res.json)
-        );*/
+        /* if (this.crrentSearch) {
+             this.flashcardService.search({
+                 query: this.currentSearch,
+                 }).subscribe(
+                     (res: ResponseWrapper) => this.flashcards = res.json,
+                     (res: ResponseWrapper) => this.onError(res.json)
+                 );
+             return;
+        }
+         this.flashcardService.query().subscribe(
+             (res: ResponseWrapper) => {
+                 this.flashcards = res.json;
+                 this.currentSearch = '';
+             },
+             (res: ResponseWrapper) => this.onError(res.json)
+         );*/
     }
 
     search(query) {
@@ -109,12 +109,12 @@ flashcardsNoHTML : Flashcard[];
     }
 
     searchFlashcardByTitleLike(searchKeyword) {
-        this.entityService.searchFlashcardByTitleLike(searchKeyword+"%").subscribe((data) => {
+        this.entityService.searchFlashcardByTitleLike(searchKeyword + "%").subscribe((data) => {
             let body = JSON.parse(data._body);
             this.flashcards = body;
             this.flashcardsNoHTML = body;
 
-            for(let i = 0; i < this.flashcardsNoHTML.length; i++) {
+            for (let i = 0; i < this.flashcardsNoHTML.length; i++) {
                 let descriptionWithHTML = this.flashcardsNoHTML[i].description;
                 let regex = /<[^>]*>/;
                 let descriptionNoHTML = replaceAll(descriptionWithHTML, regex, "");
@@ -129,7 +129,7 @@ flashcardsNoHTML : Flashcard[];
         this.loadAll();
     }
     ngOnInit() {
-        this.searchFlashcardByTitleLike("zzzzzzzzz");
+        this.searchFlashcardByTitleLike('zzzzzzzzz');
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;

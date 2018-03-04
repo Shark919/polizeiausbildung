@@ -29,14 +29,14 @@ function replaceAll(str, find, replace) {
         trigger('listAnimation', [
             transition('* => *', [
 
-                query(':enter', style({ opacity: 0 }), {optional: true}),
+                query(':enter', style({ opacity: 0 }), { optional: true }),
 
                 query(':enter', stagger('150ms', [
                     animate('500ms ease-in', keyframes([
-                        style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
-                        style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
-                        style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
-                    ]))]), {optional: true}),
+                        style({ opacity: 0, transform: 'translateY(-75%)', offset: 0 }),
+                        style({ opacity: .5, transform: 'translateY(35px)', offset: 0.3 }),
+                        style({ opacity: 1, transform: 'translateY(0)', offset: 1.0 }),
+                    ]))]), { optional: true }),
 
                 //query(':leave', style({ opacity: 1 }), {optional: true}),
 
@@ -45,7 +45,7 @@ function replaceAll(str, find, replace) {
                 //        style({opacity: 0, transform: 'translateX(-50%)'}),
                 //   ]))]), {optional: true})
             ])
-            ])
+        ])
     ]
 })
 export class SearchComponent implements OnInit {
@@ -72,8 +72,8 @@ export class SearchComponent implements OnInit {
         this.searchFlashcardByTitleLike("");
     }
 
-    searchFlashcardByTitle(searchKeyword){
-        this.entityService.searchFlashcardByTitle(searchKeyword).subscribe((data) =>{
+    searchFlashcardByTitle(searchKeyword) {
+        this.entityService.searchFlashcardByTitle(searchKeyword).subscribe((data) => {
             let body = JSON.parse(data._body);
             console.log(body);
             this.title = body.title;
@@ -82,13 +82,13 @@ export class SearchComponent implements OnInit {
         }, (error) => this.processError(error));
     }
 
-    searchFlashcardByTitleLike(searchKeyword){
-        this.entityService.searchFlashcardByTitleLike("%"+searchKeyword+"%").subscribe((data) =>{
+    searchFlashcardByTitleLike(searchKeyword) {
+        this.entityService.searchFlashcardByTitleLike("%" + searchKeyword + "%").subscribe((data) => {
             let body = JSON.parse(data._body);
             this.flashcards = body;
             this.flashcardsNoHTML = body;
 
-            for(let i = 0; i < this.flashcardsNoHTML.length; i++) {
+            for (let i = 0; i < this.flashcardsNoHTML.length; i++) {
                 let descriptionWithHTML = this.flashcardsNoHTML[i].description;
                 let regex = /<[^>]*>/;
                 let descriptionNoHTML = replaceAll(descriptionWithHTML, regex, "");
@@ -106,7 +106,7 @@ export class SearchComponent implements OnInit {
         if (response.status === 400 && response._body === '...') {
             //this.errorUserExists = 'ERROR';
         } else {
-           this.error = 'ERROR';
+            this.error = 'ERROR';
         }
     }
 

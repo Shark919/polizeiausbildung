@@ -13,7 +13,8 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" (keyup)="searchFlashcardByTitleLike(currentSearch)" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Suchbegriff eingeben">
+                    <input type="text" class="form-control" (keyup)="searchFlashcardByTitleLike(currentSearch)" [(ngModel)]="currentSearch" id="currentSearch"
+                        name="currentSearch" placeholder="Suchbegriff eingeben">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -28,41 +29,35 @@
     <div class="table-responsive" *ngIf="flashcardsNoHTML" [@myAwesomeAnimation]="'fadeIn'">
         <table class="table table-striped">
             <thead>
-            <tr>
-            <th><span>Titel</span></th>
-            <th><span>Beschreibung</span></th>
-            <th></th>
-            </tr>
+                <tr>
+                    <th><span>Titel</span></th>
+                    <th><span>Beschreibung</span></th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody [@listAnimation]="flashcards.length">
-            <tr *ngFor="let flashcard of flashcardsNoHTML ;trackBy: trackId">
-                <td>{{flashcard.title}}</td>
-                <td>{{flashcard.description}}</td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../flashcard', flashcard.id ]"
-                                class="btn btn-info btn-sm">
+                <tr *ngFor="let flashcard of flashcardsNoHTML ;trackBy: trackId">
+                    <td>{{flashcard.title}}</td>
+                    <td>{{flashcard.description}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit" [routerLink]="['../flashcard', flashcard.id ]" class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="hidden-md-down">Details</span>
                         </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'flashcard/'+ flashcard.id + '/edit'} }]"
-                                replaceUrl="true"
+                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'flashcard/'+ flashcard.id + '/edit'} }]" replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="hidden-md-down">Editieren</span>
                         </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'flashcard/'+ flashcard.id + '/delete'} }]"
-                                replaceUrl="true"
+                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'flashcard/'+ flashcard.id + '/delete'} }]" replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
                             <span class="hidden-md-down">Löschen</span>
                         </button>
-                    </div>
-                </td>
-            </tr>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

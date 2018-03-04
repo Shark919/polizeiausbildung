@@ -8,7 +8,7 @@ import { ArticleComponent } from './article.component';
 import { ArticleDetailComponent } from './article-detail.component';
 import { ArticlePopupComponent } from './article-dialog.component';
 import { ArticleDeletePopupComponent } from './article-delete-dialog.component';
-import {FlashcardDetailComponent} from "../flashcard/flashcard-detail.component";
+import { FlashcardDetailComponent } from "../flashcard/flashcard-detail.component";
 
 export const articleRoute: Routes = [
     {

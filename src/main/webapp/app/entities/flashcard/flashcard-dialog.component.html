@@ -2,58 +2,47 @@
 
     <div class="modal-header">
         <h4 class="modal-title" id="myFlashcardLabel">Editieren der Karteikarte</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group">
             <label class="form-control-label" for="field_title">Titel</label>
-            <input type="text" class="form-control" name="title" id="field_title"
-                   [(ngModel)]="flashcard.title" required minlength="4" />
+            <input type="text" class="form-control" name="title" id="field_title" [(ngModel)]="flashcard.title" required minlength="4"
+            />
             <div [hidden]="!(editForm.controls.title?.dirty && editForm.controls.title?.invalid)">
-                <small class="form-text text-danger"
-                       [hidden]="!editForm.controls.title?.errors?.required">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.title?.errors?.required">
                     Dies ist ein Pflichtfeld.
                 </small>
-                <small class="form-text text-danger"
-                       [hidden]="!editForm.controls.title?.errors?.minlength">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.title?.errors?.minlength">
                     Mindestens 4 Buchstaben notwendig.
                 </small>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_category">Kategorie</label>
-            <input type="text" class="form-control" name="category" id="field_category"
-                   [(ngModel)]="flashcard.category" required minlength="4" />
+            <input type="text" class="form-control" name="category" id="field_category" [(ngModel)]="flashcard.category" required minlength="4"
+            />
             <div [hidden]="!(editForm.controls.category?.dirty && editForm.controls.category?.invalid)">
-                <small class="form-text text-danger"
-                       [hidden]="!editForm.controls.category?.errors?.required">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.category?.errors?.required">
                     Dies ist ein Pflichtfeld.
                 </small>
-                <small class="form-text text-danger"
-                       [hidden]="!editForm.controls.category?.errors?.minlength">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.category?.errors?.minlength">
                     Mindestens 4 Buchstaben notwendig.
                 </small>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label">Beschreibung</label>
-            <jhi-tiny-editor
-                [elementId]="'field_description'"
-                [content]=flashcard.description
-                (onEditorContentChange)="keyupHandler($event)"
-            >
+            <jhi-tiny-editor [elementId]="'field_description'" [content]=flashcard.description (onEditorContentChange)="keyupHandler($event)">
             </jhi-tiny-editor>
             <!--<input type="text" class="form-control" name="description" id="field_description"
                    [(ngModel)]="flashcard.description" required minlength="2" />-->
             <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
-                <small class="form-text text-danger"
-                       [hidden]="!editForm.controls.description?.errors?.required">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.description?.errors?.required">
                     Dies ist ein Pflichtfeld.
                 </small>
-                <small class="form-text text-danger"
-                       [hidden]="!editForm.controls.description?.errors?.minlength">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.description?.errors?.minlength">
                     Mindestens 2 Buchstaben notwendig.
                 </small>
             </div>

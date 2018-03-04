@@ -8,9 +8,9 @@ import {
     accountState
 } from './';
 
-import {TreeComponent} from "./tree/tree.component";
-import {NodeComponent} from "./tree/node.component";
-import {HierarchyComponent} from "./tree/hierarchy.component";
+import { TreeComponent } from "./tree/tree.component";
+import { NodeComponent } from "./tree/node.component";
+import { HierarchyComponent } from "./tree/hierarchy.component";
 
 @NgModule({
     imports: [
@@ -23,4 +23,4 @@ import {HierarchyComponent} from "./tree/hierarchy.component";
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PolizeiausbildungCodesoflawModule {}
+export class PolizeiausbildungCodesoflawModule { }

@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { Article } from './article.model';
 import { ArticleService } from './article.service';
-import {EntityService} from "../entity.service";
+import { EntityService } from "../entity.service";
 
 @Component({
     selector: 'jhi-article-detail',
@@ -45,40 +45,40 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
             this.initContent();
         });
     }
-    initContent(){
+    initContent() {
         let legalText = this.article.legaltext;
-        legalText = legalText.replace(/<\/P>/g , "");
-        legalText = legalText.replace(/<P>/g , "<P> ");
+        legalText = legalText.replace(/<\/P>/g, "");
+        legalText = legalText.replace(/<P>/g, "<P> ");
         this.contentWords = legalText.split(" ");
         this.getFlashcardLinks();
         let splitTextByHTML = legalText.split("<P>");
         this.articleContent = splitTextByHTML;
         console.log(splitTextByHTML);
     }
-    getFlashcardLinks(){
+    getFlashcardLinks() {
         //todo: replace <P>
-        for(let i = 0; i < this.contentWords.length; i++){
-            this.entityService.searchFlashcardByTitleLike('%'+this.contentWords[i]+'%').subscribe((data) => { //this.currentSearch
-            let body = JSON.parse(data._body);
-            if(body.length > 0){
-              console.log("BODY_ "+body);
-              for(let j = 0; j < this.contentWords.length; j++){
-                  if(this.contentWords[j] == body[0].title){
-                      this.contentWithLinks.push([body[0].title,body[0].id]);
-                  }
-              }
-            }
+        for (let i = 0; i < this.contentWords.length; i++) {
+            this.entityService.searchFlashcardByTitleLike('%' + this.contentWords[i] + '%').subscribe((data) => { //this.currentSearch
+                let body = JSON.parse(data._body);
+                if (body.length > 0) {
+                    console.log("BODY_ " + body);
+                    for (let j = 0; j < this.contentWords.length; j++) {
+                        if (this.contentWords[j] == body[0].title) {
+                            this.contentWithLinks.push([body[0].title, body[0].id]);
+                        }
+                    }
+                }
             }, (error) => this.onError(error));
         }
     }
 
-    hasLink(legalTextWord){
+    hasLink(legalTextWord) {
         //console.log("legaltextWord: "+legalTextWord);
-        if(this.contentWithLinks.length < 1){
+        if (this.contentWithLinks.length < 1) {
             return false;
         }
-        for(let i = 0; i < this.contentWithLinks.length; i++){
-            if(this.contentWithLinks[i][0] == legalTextWord){
+        for (let i = 0; i < this.contentWithLinks.length; i++) {
+            if (this.contentWithLinks[i][0] == legalTextWord) {
                 this.currentId = this.contentWithLinks[i][1];
                 this.currentTitle = this.contentWithLinks[i][0];
                 return true;

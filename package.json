@@ -90,7 +90,7 @@
     "node": ">=6.9.0"
   },
   "scripts": {
-    "lint": "tslint --type-check --project './tsconfig.json' -e 'node_modules/**'",
+    "lint": "tslint --type-check --project './tsconfig.json' --config ./tslint.json -e 'node_modules/**'",
     "lint:fix": "yarn run lint -- --fix",
     "ngc": "ngc -p tsconfig-aot.json",
     "cleanup": "rimraf target/{aot,www}",

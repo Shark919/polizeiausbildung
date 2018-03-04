@@ -7,16 +7,12 @@
             <span id="htmlencodeddescription"></span>
         </dd>
     </dl>
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
+    <button type="submit" (click)="previousState()" class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span> Zurück</span>
     </button>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'flashcard/'+ flashcard.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
+    <button type="button" [routerLink]="['/', { outlets: { popup: 'flashcard/'+ flashcard.id + '/edit'} }]" replaceUrl="true"
+        class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span> Editieren</span>
     </button>
 </div>

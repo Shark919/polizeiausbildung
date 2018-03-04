@@ -1,37 +1,38 @@
 <div class="buttons_container">
-<div class="buttons_background">
-    <div id="codeoflaw1" class="button_base b05_3d_roll" (click)="getContent('BGB')">
-        <div>Bürgerliches Gesetzbuch (BGB)</div>
-        <div>Bürgerliches Gesetzbuch (BGB)</div>
+    <div class="buttons_background">
+        <div id="codeoflaw1" class="button_base b05_3d_roll" (click)="getContent('BGB')">
+            <div>Bürgerliches Gesetzbuch (BGB)</div>
+            <div>Bürgerliches Gesetzbuch (BGB)</div>
+        </div>
+        <div id="codeoflaw5" class="button_base b05_3d_roll" (click)="showNotification('GGB')">
+            <div>Grundgesetzbuch (GGB)</div>
+            <div>Grundgesetzbuch (GGB)</div>
+        </div>
+        <div class="button_base b05_3d_roll" (click)="showNotification('OWiG')">
+            <div>Ordnungswidrigkeitengesetz (OWiG)</div>
+            <div>Ordnungswidrigkeitengesetz (OWiG)</div>
+        </div>
+        <div class="button_base b05_3d_roll" (click)="getContent('StGB')">
+            <div>Strafgesetzbuch (StGB)</div>
+            <div>Strafgesetzbuch (StGB)</div>
+        </div>
+        <div class="button_base b05_3d_roll" (click)="showNotification('StPO')">
+            <div>Strafprozessordnung (StPO)</div>
+            <div>Strafprozessordnung (StPO)</div>
+        </div>
+        <div class="button_base b05_3d_roll" (click)="showNotification('StVG')">
+            <div>Straßenverkehrsgesetz (StVG)</div>
+            <div>Straßenverkehrsgesetz (StVG)</div>
+        </div>
     </div>
-    <div id="codeoflaw5" class="button_base b05_3d_roll" (click)="showNotification('GGB')">
-        <div>Grundgesetzbuch (GGB)</div>
-        <div>Grundgesetzbuch (GGB)</div>
-    </div>
-    <div class="button_base b05_3d_roll" (click)="showNotification('OWiG')">
-        <div>Ordnungswidrigkeitengesetz (OWiG)</div>
-        <div>Ordnungswidrigkeitengesetz (OWiG)</div>
-    </div>
-    <div class="button_base b05_3d_roll" (click)="getContent('StGB')">
-        <div>Strafgesetzbuch (StGB)</div>
-        <div>Strafgesetzbuch (StGB)</div>
-    </div>
-    <div class="button_base b05_3d_roll" (click)="showNotification('StPO')">
-        <div>Strafprozessordnung (StPO)</div>
-        <div>Strafprozessordnung (StPO)</div>
-    </div>
-    <div class="button_base b05_3d_roll" (click)="showNotification('StVG')">
-        <div>Straßenverkehrsgesetz (StVG)</div>
-        <div>Straßenverkehrsgesetz (StVG)</div>
-    </div>
-</div>
 </div>
 <br/>
 <div class="row">
     <div class="col-sm-12">
         <form name="searchForm" class="form-inline">
             <div class="input-group w-100 mt-3">
-                <input type="text" class="form-control" (keyup)="search(currentSearch)" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                <input type="text" class="form-control" (keyup)="search(currentSearch)" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch"
+                    placeholder="Query">
                 <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                     <span class="fa fa-search"></span>
                 </button>
@@ -50,47 +51,39 @@
 <div class="table-responsive" style="margin-top: 50px;" *ngIf="articles" [@myAwesomeAnimation]="'fadeIn'">
     <table class="table table-striped">
         <thead>
-        <tr>
-            <th><span>Title</span></th>
-            <th><span>Legaltext</span></th>
-            <th><span>Codeoflaw</span></th>
-            <th></th>
-        </tr>
+            <tr>
+                <th><span>Title</span></th>
+                <th><span>Legaltext</span></th>
+                <th><span>Codeoflaw</span></th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let article of (articles ? articles.slice(0,100): []); let i = index">
-            <td>{{article.title}}</td>
-            <td>{{article.legaltext}}</td>
-            <td>
-                <div *ngIf="article.codeoflaw">
-                    <a [routerLink]="['../codeoflaw', article.codeoflaw?.id ]" >{{article.codeoflaw?.shortTitle}}</a>
-                </div>
-            </td>
-            <td class="text-right">
-                <div class="btn-group flex-btn-group-container">
-                    <button type="submit"
-                            [routerLink]="['../article', article.id ]"
-                            class="btn btn-info btn-sm">
+            <tr *ngFor="let article of (articles ? articles.slice(0,100): []); let i = index">
+                <td>{{article.title}}</td>
+                <td>{{article.legaltext}}</td>
+                <td>
+                    <div *ngIf="article.codeoflaw">
+                        <a [routerLink]="['../codeoflaw', article.codeoflaw?.id ]">{{article.codeoflaw?.shortTitle}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit" [routerLink]="['../article', article.id ]" class="btn btn-info btn-sm">
                         <span class="fa fa-eye"></span>
                         <span class="hidden-md-down">View</span>
                     </button>
-                    <button type="submit"
-                            [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]"
-                            replaceUrl="true"
-                            class="btn btn-primary btn-sm">
+                        <button type="submit" [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary btn-sm">
                         <span class="fa fa-pencil"></span>
                         <span class="hidden-md-down">Edit</span>
                     </button>
-                    <button type="submit"
-                            [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/delete'} }]"
-                            replaceUrl="true"
-                            class="btn btn-danger btn-sm">
+                        <button type="submit" [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/delete'} }]" replaceUrl="true" class="btn btn-danger btn-sm">
                         <span class="fa fa-remove"></span>
                         <span class="hidden-md-down">Delete</span>
                     </button>
-                </div>
-            </td>
-        </tr>
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'node',
@@ -18,6 +18,6 @@ export class NodeComponent implements OnInit {
     }
     toggle() {
         this.IsExpanded = !this.IsExpanded;
-        console.log(this.IsExpanded+" " + this.item.label);
+        console.log(this.IsExpanded + " " + this.item.label);
     }
 }

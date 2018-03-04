@@ -1,5 +1,5 @@
 <li style="list-style: none;" class="tree-list-item">
-    <a class ="iconButton" (click)="toggle()"> <i class="material-icons"></i>{{item.model.id}}</a>
+    <a class="iconButton" (click)="toggle()"> <i class="material-icons"></i>{{item.model.id}}</a>
     <div *ngIf="IsExpanded">
         <div *ngIf="item.children">
             <ul *ngFor="let subitem of item.children">

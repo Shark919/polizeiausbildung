@@ -25,7 +25,7 @@ import {
                 opacity: '1',
                 transform: 'translateY(100px)'
             })),
-            transition('void => *', [style({opacity: '0'}), animate('1000ms')])
+            transition('void => *', [style({ opacity: '0' }), animate('1000ms')])
         ])
     ]
 })
@@ -41,14 +41,14 @@ export class HomeComponent implements OnInit {
     ) {
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.principal.identity().then((account) => {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
     }
 
-    registerAuthenticationSuccess(){
+    registerAuthenticationSuccess() {
         this.eventManager.subscribe('authenticationSuccess', (message) => {
             this.principal.identity().then((account) => {
                 this.account = account;
@@ -56,15 +56,16 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    isAuthenticated(){
+    isAuthenticated() {
         return this.principal.isAuthenticated();
     }
 
-    login(){
+    login() {
+        console.log('yo');
         this.modalRef = this.loginModalService.open();
     }
 
-    feedback(){
+    feedback() {
         this.modalRef = this.feedbackModalService.open();
     }
 }

@@ -51,7 +51,7 @@ export class FlashcardService {
     }
 
     queryComplete(query: string): Observable<ResponseWrapper> {
-        console.log("query: "+query);
+        console.log("query: " + query);
         const params: URLSearchParams = new URLSearchParams();
         params.set('flashcardQuery', query);
 

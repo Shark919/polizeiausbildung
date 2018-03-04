@@ -9,8 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Flashcard } from './flashcard.model';
 import { FlashcardPopupService } from './flashcard-popup.service';
 import { FlashcardService } from './flashcard.service';
-import {forEach} from "@angular/router/src/utils/collection";
-import {EntityService} from "../entity.service";
+import { forEach } from "@angular/router/src/utils/collection";
+import { EntityService } from "../entity.service";
 
 function escapeRegExp(str) {
     return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
@@ -63,24 +63,24 @@ export class FlashcardDialogComponent implements OnInit {
     }
 
     private createHyperlinks() {
-       let plannedLinks = this.getPlannedLinks();
-       if (plannedLinks != null){
-           for (let i = 0; i < plannedLinks.length; i++) {
-               this.obs = new Observable(observer => {
-                   this.getURLForItem(observer, plannedLinks[i]);
-               });
-               let url;
-               let subscription = this.obs.subscribe(
-                   value => {
-                       url = value;
-                       this.flashcard.description = replaceAll(this.flashcard.description, plannedLinks[i], url);
-                       this.saveAndUpdate();
-                   }
-               );
-           }
-       } else {
-           this.saveAndUpdate();
-       }
+        let plannedLinks = this.getPlannedLinks();
+        if (plannedLinks != null) {
+            for (let i = 0; i < plannedLinks.length; i++) {
+                this.obs = new Observable(observer => {
+                    this.getURLForItem(observer, plannedLinks[i]);
+                });
+                let url;
+                let subscription = this.obs.subscribe(
+                    value => {
+                        url = value;
+                        this.flashcard.description = replaceAll(this.flashcard.description, plannedLinks[i], url);
+                        this.saveAndUpdate();
+                    }
+                );
+            }
+        } else {
+            this.saveAndUpdate();
+        }
     }
 
     private getPlannedLinks() {
@@ -96,14 +96,14 @@ export class FlashcardDialogComponent implements OnInit {
         query = replaceAll(query, "[[", "");
         query = replaceAll(query, "]]", "");
         let flashcardId = 0;
-        this.entityService.queryComplete(query).subscribe((data) =>{
+        this.entityService.queryComplete(query).subscribe((data) => {
             let body = data.json();
             // todo: if multiple entries show new page
             // todo: search in title AND description
             try {
                 flashcardId = body[0].id;
-                observer.next('<a href=' + window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/#/flashcard/' + flashcardId + '>'+query+'</a>');
-            } catch(error) {}
+                observer.next('<a href=' + window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/#/flashcard/' + flashcardId + '>' + query + '</a>');
+            } catch (error) { }
         }, (error) => this.onSaveError(error));
     }
 
@@ -113,7 +113,7 @@ export class FlashcardDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Flashcard) {
-        this.eventManager.broadcast({ name: 'flashcardListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'flashcardListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -132,7 +132,7 @@ export class FlashcardDialogComponent implements OnInit {
         this.alertService.error(error.message, null, null);
     }
 
-    keyupHandler(event){
+    keyupHandler(event) {
         //console.log(event.toString());
         this.flashcard.description = event.toString();
     }
@@ -149,11 +149,11 @@ export class FlashcardPopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private flashcardPopupService: FlashcardPopupService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.flashcardPopupService
                     .open(FlashcardDialogComponent as Component, params['id']);
             } else {

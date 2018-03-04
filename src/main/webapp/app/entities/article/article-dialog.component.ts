@@ -59,7 +59,7 @@ export class ArticleDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Article) {
-        this.eventManager.broadcast({ name: 'articleListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'articleListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -94,11 +94,11 @@ export class ArticlePopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private articlePopupService: ArticlePopupService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.articlePopupService
                     .open(ArticleDialogComponent as Component, params['id']);
             } else {
